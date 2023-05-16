@@ -4,47 +4,131 @@
   <title>Rey David|Tecnologer</title>
   <link rel="stylesheet" href="theme.css">
 </head>
-<body>
+<body class="editor">
   <header>
-    <h1>My Portfolio</h1>
+    <h1>./porfolio/me.go</h1>
   </header>
   
   <main>
-    <h2>About Me</h2>
-    <p>
-        Hello, I'm Rey David. 
-        I am a Senior Software Engineer with experience in developing scalable and distributed systems. 
-        I am passionate about leveraging technology to solve complex problems and enjoy collaborating with teams to deliver innovative solutions.
-    </p>
-    
-    <h2>Experience</h2>
-    <ul>
-        <li>
-            <strong>Pentalog</strong> - Senior Software Engineering, Dec 2019 - Present
-        </li>
-        <li>
-            <strong>Ubilogix</strong> - Software Engineer, Mar 2017 - Dec 2019
-        </li>
-        <li>
-            <strong>Alesayi Development Company (ADCO)</strong> - System Architect, Aug 2015 - Jan 2017
-        </li>
-        <li>
-            <strong>RedRabbit MX</strong> - Senior Full Stack Web Developer, Jun 2012 - Jun 2015
-        </li>
-    </ul>
-      
-    
-    <h2>Contact Information</h2>
-    <div class="contact-info">
-        <p>
-            <span>Email: </span>
-            <a href="mailto:rdominguez@tecnologer.net">rdominguez@tecnologer.net</a>
-        </p>
-        <p>
-            <span>LinkedIn: </span> 
-            <a href="https://www.linkedin.com/in/rey-david-dominguez-soto/">https://www.linkedin.com/in/rey-david-dominguez-soto/</a>
-        </p>
+      <pre class="comment">
+// Hello, I'm Rey David. 
+// I am a Senior Software Engineer with experience in developing
+// scalable and distributed systems. 
+// I am passionate about leveraging technology to solve complex
+// problems and enjoy collaborating with teams to deliver innovative
+// solutions.
+</pre>
+<pre><span class="keyword">package </span> <span>aboutme</span></pre>
+    <pre>
+
+    </pre>
+    <div>
+        <span>
+            <pre><span class="keyword">type</span> Experience <span class="keyword">struct</span> <span class="curlybrace">{</span></pre>
+            <pre>    Company      <span class="primitivetype">string</span>   <span class="string">`json:"company"`</span></pre>
+            <pre>    Title        <span class="primitivetype">string</span>   <span class="string">`json:"title"`</span></pre>
+            <pre>    StartDate    <span class="primitivetype">string</span>   <span class="string">`json:"start_date"`</span></pre>
+            <pre>    EndDate      <span class="primitivetype">string</span>   <span class="string">`json:"end_date"`</span></pre>
+            <pre>    Location     <span class="primitivetype">string</span>   <span class="string">`json:"location"`</span></pre>
+            <pre>    Technologies <span class="squarebracket">[]</span><span class="primitivetype">string</span> <span class="string">`json:"technologies"`</span> </pre>
+            <pre><span class="curlybrace">}</span></pre>
+        </span>
     </div>
+    <div>
+        <div class="card">
+<!-- Experience card -->
+            <span class="experience">
+                <pre><span class="variable">pentalog</span> <span class="operator">:= </span> Experience <span class="curlybrace">{</span> </pre>
+                <pre>    Company:      <span class="string">"Pentalog"</span>,  </pre>
+                <pre>    Title:        <span class="string">"Senior Software Engineer"</span>,  </pre>
+                <pre>    StartDate:    <span class="string">"December 2019"</span>,  </pre>
+                <pre>    EndDate:      <span class="keyword">nil</span>,  </pre>
+                <pre>    Location:     <span class="string">"Guadalajara, Mexico"</span>,  </pre>
+                <pre>    Technologies: <span class="squarebracket">[</span>  </pre>
+                <pre>        <span class="string">"C# dotnet"</span>, </pre>
+                <pre>        <span class="string">"Go"</span>, </pre>
+                <pre>        <span class="string">"AWS"</span>, </pre>
+                <pre>        <span class="string">"Postgres"</span>, </pre>
+                <pre>    <span class="squarebracket">]</span>,  </pre>
+                <pre><span class="curlybrace">}</span> </pre>
+            </span>
+        </div>
+        <div class="card">
+<!-- Experience card -->
+            <span class="experience">
+                <pre><span class="variable">ubilogix</span> <span class="operator">:= </span>Experience <span class="curlybrace">{</span> </pre>
+                <pre>    Company:      <span class="string">"Ubilogix"</span>, </pre>
+                <pre>    Title:        <span class="string">"Software Engineer"</span>, </pre>
+                <pre>    StartDate:    <span class="string">"March 2017"</span>,  </pre>
+                <pre>    EndDate:      <span class="string">"December 2019"</span>,  </pre>
+                <pre>    Location:     <span class="string">"Ensenada, Mexico"</span>,  </pre>
+                <pre>    Technologies: <span class="squarebracket">[</span>  </pre>
+                <pre>        <span class="string">"C# .NET Framework"</span>,  </pre>
+                <pre>        <span class="string">"WPF"</span>,  </pre>
+                <pre>        <span class="string">"SQLite"</span>,  </pre>
+                <pre>        <span class="string">"Go"</span>,  </pre>
+                <pre>    <span class="squarebracket">]</span>,  </pre>
+                <pre><span class="curlybrace">}</span>  </pre>
+            </span>
+        </div>
+
+        <div class="card">
+            <!-- Experience card -->
+            <span class="experience">
+                <pre><span class="variable">alesayiDevelopment</span> <span class="operator">:= </span>Experience <span class="curlybrace">{</span>  </pre>
+                <pre>    Company:      <span class="string">"Alesayi Development Company (ADCO)"</span>,  </pre>
+                <pre>    Title:        <span class="string">"System Architect"</span>,  </pre>
+                <pre>    StartDate:    <span class="string">"August 2015"</span>,  </pre>
+                <pre>    EndDate:      <span class="string">"January 2017"</span>,  </pre>
+                <pre>    Location:     <span class="string">"Jeddah, Saudi Arabia"</span>,  </pre>
+                <pre>    Technologies: <span class="squarebracket">[</span>  </pre>
+                <pre>        <span class="string">"C# .Net MVC 5"</span>,  </pre>
+                <pre>        <span class="string">"HTML 5"</span>,  </pre>
+                <pre>        <span class="string">"CSS"</span>,  </pre>
+                <pre>        <span class="string">"Javascript"</span>,  </pre>
+                <pre>        <span class="string">"MSSQL"</span>  </pre>
+                <pre>    <span class="squarebracket">]</span>,  </pre>
+                <pre><span class="curlybrace">}</span>  </pre>
+            </span>
+        </div>
+
+        <div class="card">
+            <!-- Experience card -->
+            <span class="experience">
+                <pre><span class="variable">redRabbitMX</span> <span class="operator">:= </span>Experience <span class="curlybrace">{</span>  </pre>
+                <pre>    Company:      <span class="string">"RedRabbit MX"</span>,  </pre>
+                <pre>    Title:        <span class="string">"Senior Full Stack web Developer"</span>,  </pre>
+                <pre>    StartDate:    <span class="string">"June 2012"</span>,  </pre>
+                <pre>    EndDate:      <span class="string">"June 2015"</span>,  </pre>
+                <pre>    Location:     <span class="string">"Culiacan, Mexico"</span>,  </pre>
+                <pre>    Technologies: <span class="squarebracket">[</span>  </pre>
+                <pre>        <span class="string">"Coldfusion"</span>,  </pre>
+                <pre>        <span class="string">"Python"</span>,  </pre>
+                <pre>        <span class="string">"HTML 5"</span>,  </pre>
+                <pre>        <span class="string">"CSS"</span>,  </pre>
+                <pre>        <span class="string">"Javascript"</span>,  </pre>
+                <pre>        <span class="string">"SQL Transact"</span>  </pre>
+                <pre>    <span class="squarebracket">]</span>,  </pre>
+                <pre><span class="curlybrace">}</span>  </pre>
+            </span>
+        </div>
+    </div>    
   </main>
+
+<div class="footer">
+    <div class="footerelem">
+        <span>Email: </span>
+        <a href="mailto:rdominguez@tecnologer.net">rdominguez@tecnologer.net</a>
+    </div>
+    <div class="footerelem">
+        <span>LinkedIn: </span>
+        <a
+            href="https://www.linkedin.com/in/rey-david-dominguez-soto/">https://www.linkedin.com/in/rey-david-dominguez-soto/</a>
+    </div>
+    <div class="footerelem">
+        <span>Telegram: </span>
+        <a href="https://t.me/tecnologer">https://t.me/tecnologer</a>
+    </div>
+</div>
 </body>
 </html>

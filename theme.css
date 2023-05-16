@@ -1,122 +1,188 @@
-/* Primary Colors */
-:root {
-    --primary-color: #007bff;  /* Blue */
-    --secondary-color: #6c757d;  /* Gray */
-    --background-color: #f8f9fa;  /* Light Gray */
-  }
-  
-  /* Fonts */
-  body {
-    font-family: Arial, sans-serif;
-  }
-  
-  /* Layout */
-  .container {
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 40px;
-  }
-  
-  /* Header */
-  .header {
-    text-align: center;
-    margin-bottom: 40px;
-  }
-  
-  .header h1 {
-    font-size: 32px;
-    color: var(--primary-color);
-  }
-  
-  .header p {
-    font-size: 18px;
-    color: var(--secondary-color);
-  }
-  
-  /* Navigation */
-  .navbar {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 40px;
-  }
-  
-  .navbar ul {
-    list-style-type: none;
-  }
-  
-  .navbar li {
-    display: inline-block;
-    margin: 0 10px;
-  }
-  
-  .navbar a {
-    color: var(--primary-color);
-    text-decoration: none;
-    font-size: 16px;
-    padding: 5px;
-  }
-  
-  .navbar a:hover {
-    text-decoration: underline;
-  }
-  
-  /* Main Content */
-  .main-content {
-    margin-bottom: 40px;
-  }
-  
-  .main-content h2 {
-    font-size: 24px;
-    color: var(--primary-color);
-    margin-bottom: 20px;
-  }
-  
-  .main-content p {
-    font-size: 16px;
-    color: var(--secondary-color);
-    line-height: 1.5;
-  }
-  
-  /* Projects */
-  .projects {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    grid-gap: 20px;
-  }
-  
-  .project-card {
-    background-color: white;
-    border-radius: 5px;
-    padding: 20px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s ease;
-  }
-  
-  .project-card:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .project-card h3 {
-    font-size: 20px;
-    color: var(--primary-color);
-    margin-bottom: 10px;
-  }
-  
-  .project-card p {
-    font-size: 14px;
-    color: var(--secondary-color);
-  }
-  
-  /* Footer */
-  .footer {
-    text-align: center;
-    margin-top: 40px;
-    padding-top: 20px;
-    border-top: 1px solid var(--secondary-color);
-  }
-  
-  .footer p {
-    font-size: 14px;
-    color: var(--secondary-color);
-  }
-  
+/* Reset default styles */
+body,
+html {
+  margin-left: 5%;
+  margin-right: 5%;
+  padding: 10;
+  font-family: Arial, sans-serif;
+}
+
+/* Set background color */
+body {
+  background-color: #1e1e1e;
+}
+
+/* Set text color */
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+code {
+  color: #fff;
+  font-size: 12pt;
+}
+
+/* Code block styles */
+pre {
+  /* background-color: #1a1a1a; */
+  color: #ccc;
+  padding: 0px;
+  border-radius: 0px;
+  margin: 0px;
+  overflow-x: auto;
+}
+
+.experience {
+  font-size: 14pt;
+}
+
+/* Inline code styles */
+code {
+  background-color: #000;
+  color: #ccc;
+  padding: 3px 5px;
+  border-radius: 3px;
+}
+
+/* Header styles */
+h1 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+h2 {
+  font-size: 28px;
+  margin-bottom: 15px;
+}
+
+h3 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+/* Link styles */
+a {
+  color: #fff;
+  text-decoration: none;
+  border-bottom: 1px solid #fff;
+}
+
+a:hover {
+  border-bottom-color: transparent;
+}
+
+/* Button styles */
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #333;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 3px;
+}
+
+.button:hover {
+  background-color: #555;
+}
+
+/* Container styles */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px;
+}
+
+/* Code editor styles */
+.editor {
+  background-color: #1a1a1a;
+  color: #ccc;
+  padding: 20px;
+  border-radius: 5px;
+  font-family: Consolas, monospace;
+  font-size: 14px;
+}
+
+/* Syntax highlighting styles */
+.comment {
+  color: #7f7f7f;
+}
+
+.keyword {
+  color: #569cd6;
+}
+
+.string {
+  color: #d69d85;
+}
+
+.number {
+  color: #b5cea8;
+}
+
+.primitivetype {
+  color: #0a8f41;
+}
+
+.operator {
+  color: #ce9178;
+}
+
+.function {
+  color: #dcdcaa;
+}
+
+.variable {
+  color: #9cdcfe;
+}
+
+.variable {
+  color: #9cdcfe;
+}
+
+.curlybrace {
+  color: #d4e210;
+}
+
+.squarebracket {
+  color: #1095e2;
+}
+
+/* Footer styles */
+.footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+  font-size: 14px;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin-top: 20px;
+}
+
+.footerelem {
+  float: left;
+  width: 33%;
+}
+
+.card {
+  float: left;
+  background-color: #1e1e1e;
+  color: #fff;
+  padding: 10px;
+  border-radius: 0px;
+  box-shadow: 0 0 0px rgba(0, 0, 0, 0.3);
+  margin-right: 10px;
+  margin-top: 10px;
+  width: 45%;
+  height: 340px;
+}
+
+main {
+  overflow-y: auto;
+}
