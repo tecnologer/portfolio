@@ -39,7 +39,12 @@
             padding: 0px;
             border-radius: 0px;
             margin: 0px;
-            overflow-x: auto;
+            overflow-x: visible;
+            white-space: pre-wrap;       /* Since CSS 2.1 */
+            white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+            white-space: -pre-wrap;      /* Opera 4-6 */
+            white-space: -o-pre-wrap;    /* Opera 7 */
+            word-wrap: break-word;       /* Internet Explorer 5.5+ */
         }
 
         .experience {
@@ -187,6 +192,25 @@
             margin-top: 10px;
             width: 45%;
             height: 340px;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: transparent transparent;
+        }
+
+        .card::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .card::-webkit-scrollbar-track {
+            background-color: transparent;
+        }
+
+        .card::-webkit-scrollbar-thumb {
+            background-color: transparent;
+        }
+
+        .card::-webkit-scrollbar-thumb:hover {
+            background-color: rgba(0, 0, 0, 0.2);
         }
 
         main {
