@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Rey David|Tecnologer</title>
+    <style>
+        /* Reset default styles */
+        body,
+        html {
+            margin-left: 5%;
+            margin-right: 5%;
+            padding: 10;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Set background color */
+        body {
+            background-color: #1e1e1e;
+        }
+
+        /* Set text color */
+        body,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        p,
+        code {
+            color: #fff;
+            font-size: 14pt;
+        }
+
+        /* Code block styles */
+        pre {
+            /* background-color: #1a1a1a; */
+            color: #ccc;
+            padding: 0px;
+            border-radius: 0px;
+            margin: 0px;
+            overflow-x: visible;
+            white-space: pre-wrap;
+            /* Since CSS 2.1 */
+            white-space: -moz-pre-wrap;
+            /* Mozilla, since 1999 */
+            white-space: -pre-wrap;
+            /* Opera 4-6 */
+            white-space: -o-pre-wrap;
+            /* Opera 7 */
+            word-wrap: break-word;
+            /* Internet Explorer 5.5+ */
+        }
+
+        /* Header styles */
+        h1 {
+            font-size: 25pt;
+            margin-bottom: 20px;
+        }
+
+        /* Link styles */
+        a {
+            color: #fff;
+            text-decoration: none;
+            border-bottom: 1px solid #fff;
+            cursor: pointer;
+        }
+
+        a:hover {
+            border-bottom-color: transparent;
+        }
+
+        /* Container styles */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px;
+        }
+
+        /* Code editor styles */
+        .editor {
+            background-color: #1a1a1a;
+            color: #ccc;
+            padding: 20px;
+            border-radius: 5px;
+            font-family: Consolas, monospace;
+            font-size: 14px;
+        }
+
+        /* Syntax highlighting styles */
+        .comment {
+            color: #7f7f7f;
+        }
+
+        .keyword {
+            color: #569cd6;
+        }
+
+        .string {
+            color: #d69d85;
+        }
+
+        .number {
+            color: #b5cea8;
+        }
+
+        .primitivetype {
+            color: #0a8f41;
+        }
+
+        .operator {
+            color: #ce9178;
+        }
+
+        .function {
+            color: #dcdcaa;
+        }
+
+        .variable {
+            color: #9cdcfe;
+        }
+
+        .variable {
+            color: #9cdcfe;
+        }
+
+        .curlybrace {
+            color: #bd19b5;
+        }
+
+        .parenthesis {
+            color: #d4e210;
+        }
+
+        .squarebracket {
+            color: #1095e2;
+        }
+
+        /* Footer styles */
+        .footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+            position: fixed;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin-top: 20px;
+        }
+
+        .footerelem {
+            float: left;
+            width: 33%;
+        }
+
+        main {
+            overflow-y: auto;
+        }
+    </style>
+</head>
+
+<body class="editor">
+    <header>
+        <h1><a href="index.html" title="return to home"><</a>./about/experience.go</h1>
+    </header>
+
+    <pre>
+<span class="keyword">package </span>about
+
+<span class="comment">// Experience represents a work experience.</span>
+<span class="keyword">type </span>Experience<span class="keyword"> struct </span><span class="curlybrace">{</span>
+	Company     <span class="primitivetype"> string</span>   <span class="string">`json:<span class="string">"company"</span>`</span>      <span class="comment">// The name of the company.</span>
+	Title       <span class="primitivetype"> string</span>   <span class="string">`json:<span class="string">"title"</span>`</span>        <span class="comment">// The job title.</span>
+	StartDate   <span class="primitivetype"> string</span>   <span class="string">`json:<span class="string">"start_date"</span>`</span>   <span class="comment">// The start date of the contract.</span>
+	EndDate     <span class="primitivetype"> string</span>   <span class="string">`json:<span class="string">"end_date"</span>`</span>     <span class="comment">// The end date of the contract.</span>
+	Location    <span class="primitivetype"> string</span>   <span class="string">`json:<span class="string">"location"</span>`</span>     <span class="comment">// The location of the company.</span>
+	Technologies <span class="keyword">[</span><span class="primitivetype"><span class="keyword">]</span>string</span> <span class="string">`json:<span class="string">"technologies"</span>`</span> <span class="comment">// The technologies used in the experience.</span>
+<span class="curlybrace">}</span>
+
+<span class="comment">// <a href="experience.html" title="Expand experience list"><span class="function">ListExperience</span></a> returns a list of experiences.</span>
+<span class="keyword">func </span><a href="experience.html" title="Expand experience list"><span class="function">ListExperience</span></a><span class="parenthesis">(</span><span class="parenthesis">)</span> <span class="keyword">[</span><span class="keyword">]</span>*Experience <span class="curlybrace">{</span>
+	<span class="keyword">return </span><span class="keyword">[</span><span class="keyword">]</span>*Experience<span class="curlybrace">{</span>
+		<span class="curlybrace">{</span>
+			Company:   <span class="string">"Pentalog"</span>,
+			Title:     <span class="string">"Senior Software Engineer"</span>,
+			StartDate: <span class="string">"December 2019"</span>,
+			EndDate:   <span class="string">"current"</span>,
+			Location:  <span class="string">"Gudalajara, Mexico"</span>,
+			Technologies: <span class="keyword">[</span><span class="primitivetype"><span class="keyword">]</span>string</span><span class="curlybrace">{</span>
+				<span class="string">"C# dotnet"</span>,
+				<span class="string">"MSSQL"</span>,
+				<span class="string">"Go"</span>,
+				<span class="string">"PostgreSQL"</span>,
+				<span class="string">"GraphQL"</span>,
+				<span class="string">"AWS"</span>,
+				<span class="string">"Git"</span>,
+				<span class="string">"Github Actions"</span>,
+			<span class="curlybrace">}</span>,
+		<span class="curlybrace">}</span>,
+		<span class="curlybrace">{</span>
+			Company:   <span class="string">"Ubilogix"</span>,
+			Title:     <span class="string">"Software Engineer"</span>,
+			StartDate: <span class="string">"March 2017"</span>,
+			EndDate:   <span class="string">"December 2019"</span>,
+			Location:  <span class="string">"Ensenada, Mexico"</span>,
+			Technologies: <span class="keyword">[</span><span class="primitivetype"><span class="keyword">]</span>string</span><span class="curlybrace">{</span>
+				<span class="string">"C# .NET"</span>,
+				<span class="string">"WPF"</span>,
+				<span class="string">"Go"</span>,
+				<span class="string">"SQLite"</span>,
+				<span class="string">"Zigbee"</span>,
+				<span class="string">"Git/GitLab"</span>,
+			<span class="curlybrace">}</span>,
+		<span class="curlybrace">}</span>,
+		<span class="curlybrace">{</span>
+			Company:   <span class="string">"Alesayi Development Company <span class="parenthesis">(</span>ADCO<span class="parenthesis">)</span>"</span>,
+			Title:     <span class="string">"System Architect"</span>,
+			StartDate: <span class="string">"August 2015"</span>,
+			EndDate:   <span class="string">"January 2017"</span>,
+			Location:  <span class="string">"Jeddah, Saudi Arabia"</span>,
+			Technologies: <span class="keyword">[</span><span class="primitivetype"><span class="keyword">]</span>string</span><span class="curlybrace">{</span>
+				<span class="string">"C# .NET MVC 5"</span>,
+				<span class="string">"HTML 5"</span>,
+				<span class="string">"CSS"</span>,
+				<span class="string">"Javascript"</span>,
+				<span class="string">"MSSQL"</span>,
+				<span class="string">"TFS"</span>,
+				<span class="string">"Git/Github"</span>,
+			<span class="curlybrace">}</span>,
+		<span class="curlybrace">}</span>,
+		<span class="curlybrace">{</span>
+			Company:   <span class="string">"RedRabbit MX"</span>,
+			Title:     <span class="string">"Full Stack web Developer"</span>,
+			StartDate: <span class="string">"June 2012"</span>,
+			EndDate:   <span class="string">"June 2015"</span>,
+			Location:  <span class="string">"Culiacan, Mexico"</span>,
+			Technologies: <span class="keyword">[</span><span class="primitivetype"><span class="keyword">]</span>string</span><span class="curlybrace">{</span>
+				<span class="string">"Coldfusion"</span>,
+				<span class="string">"Python"</span>,
+				<span class="string">"HTML 5"</span>,
+				<span class="string">"CSS"</span>,
+				<span class="string">"Javascript"</span>,
+				<span class="string">"AngularJS"</span>,
+				<span class="string">"JQuery"</span>,
+				<span class="string">"MSSQL"</span>,
+			<span class="curlybrace">}</span>,
+		<span class="curlybrace">}</span>,
+	<span class="curlybrace">}</span>
+<span class="curlybrace">}</span>
+
+    </pre>
+   
+
+    <div class="footer">
+        <div class="footerelem">
+            <span>Email: </span>
+            <a href="mailto:rdominguez@tecnologer.net">rdominguez@tecnologer.net</a>
+        </div>
+        <div class="footerelem">
+            <span>LinkedIn: </span>
+            <a
+                href="https://www.linkedin.com/in/rey-david-dominguez-soto/">https://www.linkedin.com/in/rey-david-dominguez-soto/</a>
+        </div>
+        <div class="footerelem">
+            <span>GitHub: </span>
+            <a href="https://github.com/tecnologer">https://github.com/tecnologer</a>
+        </div>
+    </div>
+</body>
+
+</html>

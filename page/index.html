@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Rey David|Tecnologer</title>
+    <style>
+        /* Reset default styles */
+        body,
+        html {
+            margin-left: 5%;
+            margin-right: 5%;
+            padding: 10;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Set background color */
+        body {
+            background-color: #1e1e1e;
+        }
+
+        /* Set text color */
+        body,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        p,
+        code {
+            color: #fff;
+            font-size: 14pt;
+        }
+
+        /* Code block styles */
+        pre {
+            /* background-color: #1a1a1a; */
+            color: #ccc;
+            padding: 0px;
+            border-radius: 0px;
+            margin: 0px;
+            overflow-x: visible;
+            white-space: pre-wrap;
+            /* Since CSS 2.1 */
+            white-space: -moz-pre-wrap;
+            /* Mozilla, since 1999 */
+            white-space: -pre-wrap;
+            /* Opera 4-6 */
+            white-space: -o-pre-wrap;
+            /* Opera 7 */
+            word-wrap: break-word;
+            /* Internet Explorer 5.5+ */
+        }
+
+        /* Header styles */
+        h1 {
+            font-size: 25pt;
+            margin-bottom: 20px;
+        }
+
+        /* Link styles */
+        a {
+            color: #fff;
+            text-decoration: none;
+            border-bottom: 1px solid #fff;
+            cursor: pointer;
+        }
+
+        a:hover {
+            border-bottom-color: transparent;
+        }
+
+        /* Container styles */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px;
+        }
+
+        /* Code editor styles */
+        .editor {
+            background-color: #1a1a1a;
+            color: #ccc;
+            padding: 20px;
+            border-radius: 5px;
+            font-family: Consolas, monospace;
+            font-size: 14px;
+        }
+
+        /* Syntax highlighting styles */
+        .comment {
+            color: #7f7f7f;
+        }
+
+        .keyword {
+            color: #569cd6;
+        }
+
+        .string {
+            color: #d69d85;
+        }
+
+        .number {
+            color: #b5cea8;
+        }
+
+        .primitivetype {
+            color: #0a8f41;
+        }
+
+        .operator {
+            color: #ce9178;
+        }
+
+        .function {
+            color: #dcdcaa;
+        }
+
+        .variable {
+            color: #9cdcfe;
+        }
+
+        .variable {
+            color: #9cdcfe;
+        }
+
+        .curlybrace {
+            color: #bd19b5;
+        }
+
+        .parenthesis {
+            color: #d4e210;
+        }
+
+        .squarebracket {
+            color: #1095e2;
+        }
+
+        /* Footer styles */
+        .footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+            position: fixed;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin-top: 20px;
+        }
+
+        .footerelem {
+            float: left;
+            width: 33%;
+        }
+
+        main {
+            overflow-y: auto;
+        }
+    </style>
+</head>
+
+<body class="editor">
+    <header>
+        <h1>./about/me.go</h1>
+    </header>
+
+    <pre>
+<span class="comment">// The <span class="string">"about"</span> <span class="keyword">package </span>is a collection of definitions and structures that aim to expose my professional experience and the technologies I have worked with. It provides a convenient way to present my background and skills to others who are interested in learning more about my expertise.</span>
+
+<span class="comment">// Within the <span class="string">"about"</span> package, you will find various structures that represent different aspects of my experience. These structures may include details such as my work history, projects I have been involved in, technologies I have utilized, and any other relevant information that showcases my capabilities.</span>
+
+<span class="comment">// By utilizing the <span class="string">"about"</span> package, it becomes easier to present a comprehensive overview of my professional journey, making it simpler for potential collaborators or employers to understand my skills and areas of expertise.</span>
+
+<span class="comment">// Overall, the <span class="string">"about"</span> <span class="keyword">package </span>serves as a concise and organized representation of my professional background, providing a convenient way to share my experience and technologies with others in a clear and structured manner.</span>
+<span class="keyword">package </span>about
+
+<span class="comment">// Me represents personal information and experience.</span>
+<span class="keyword">type </span>Me<span class="keyword"> struct </span><span class="curlybrace">{</span>
+	Name      <span class="primitivetype"> string</span>        <span class="string">`json:<span class="string">"name"</span>`</span>
+	Bio       <span class="primitivetype"> string</span>        <span class="string">`json:<span class="string">"bio"</span>`</span>
+	Experience <span class="keyword">[</span><span class="keyword">]</span>*Experience <span class="string">`json:<span class="string">"experience"</span>`</span>
+<span class="curlybrace">}</span>
+
+<span class="comment">// <span class="function">NewMe</span> creates a new instance of the Me<span class="keyword"> struct </span>with predefined values.</span>
+<span class="comment">// It initializes the Name, Bio, and Experience fields with default values or data obtained from external sources.</span>
+<span class="comment">// Returns a pointer to the newly created Me struct.</span>
+<span class="keyword">func </span><span class="function">NewMe</span><span class="parenthesis">(</span><span class="parenthesis">)</span> *Me <span class="curlybrace">{</span>
+	<span class="keyword">return </span>&Me<span class="curlybrace">{</span>
+		Name: <span class="string">"Rey David"</span>,
+		Bio: <span class="string">`
+			I am a Senior Software Engineer with experience in developing scalable and distributed systems. 
+			I am passionate about leveraging technology to solve complex problems and enjoy collaborating with teams to deliver innovative solutions.
+		`</span>,
+		Experience: <a href="experience.html" title="Expand experience list"><span class="function">ListExperience</span></a><span class="parenthesis">(</span><span class="parenthesis">)</span>,
+	<span class="curlybrace">}</span>
+<span class="curlybrace">}</span>
+
+    </pre>
+   
+
+    <div class="footer">
+        <div class="footerelem">
+            <span>Email: </span>
+            <a href="mailto:rdominguez@tecnologer.net">rdominguez@tecnologer.net</a>
+        </div>
+        <div class="footerelem">
+            <span>LinkedIn: </span>
+            <a
+                href="https://www.linkedin.com/in/rey-david-dominguez-soto/">https://www.linkedin.com/in/rey-david-dominguez-soto/</a>
+        </div>
+        <div class="footerelem">
+            <span>GitHub: </span>
+            <a href="https://github.com/tecnologer">https://github.com/tecnologer</a>
+        </div>
+    </div>
+</body>
+
+</html>
