@@ -9,9 +9,10 @@ package about
 
 // Me represents personal information and experience.
 type Me struct {
-	Name       string        `json:"name"`       // The name of the person.
-	Bio        string        `json:"bio"`        // A brief biography.
-	Experience []*Experience `json:"experience"` // List of experiences.
+	Name           string        `json:"name"`            // The name of the person.
+	Bio            string        `json:"bio"`             // A brief biography.
+	Experience     []*Experience `json:"experience"`      // List of experiences.
+	ContactOptions []*Contact    `json:"contact_options"` // List of contact platform
 }
 
 // NewMe creates a new instance of the Me struct with predefined values.
@@ -24,6 +25,7 @@ func NewMe() *Me {
 			I am a Senior Software Engineer with experience in developing scalable and distributed systems. 
 			I am passionate about leveraging technology to solve complex problems and enjoy collaborating with teams to deliver innovative solutions.
 		`,
-		Experience: ListExperience(),
+		Experience:     ListExperience(),
+		ContactOptions: ListContactOptions(),
 	}
 }

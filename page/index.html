@@ -167,25 +167,26 @@
     </header>
 
     <pre>
-<span class="comment">// The <span class="string">"about"</span> <span class="keyword">package </span>is a collection of definitions and structures that aim to expose my professional experience and the technologies I have worked with. It provides a convenient way to present my background and skills to others who are interested in learning more about my expertise.</span>
+<span class="comment"<span class="comment">>// The <span class="string">"about"</span> <span class="keyword">package </span>is a collection of definitions and structures that aim to expose my professional experience and the technologies I have worked with. It provides a convenient way to present my background and skills to others who are interested in learning more about my expertise.</span></span>
 
-<span class="comment">// Within the <span class="string">"about"</span> package, you will find various structures that represent different aspects of my experience. These structures may include details such as my work history, projects I have been involved in, technologies I have utilized, and any other relevant information that showcases my capabilities.</span>
+<span class="comment"<span class="comment">>// Within the <span class="string">"about"</span> package, you will find various structures that represent different aspects of my experience. These structures may include details such as my work history, projects I have been involved in, technologies I have utilized, and any other relevant information that showcases my capabilities.</span></span>
 
-<span class="comment">// By utilizing the <span class="string">"about"</span> package, it becomes easier to present a comprehensive overview of my professional journey, making it simpler for potential collaborators or employers to understand my skills and areas of expertise.</span>
+<span class="comment"<span class="comment">>// By utilizing the <span class="string">"about"</span> package, it becomes easier to present a comprehensive overview of my professional journey, making it simpler for potential collaborators or employers to understand my skills and areas of expertise.</span></span>
 
-<span class="comment">// Overall, the <span class="string">"about"</span> <span class="keyword">package </span>serves as a concise and organized representation of my professional background, providing a convenient way to share my experience and technologies with others in a clear and structured manner.</span>
+<span class="comment"<span class="comment">>// Overall, the <span class="string">"about"</span> <span class="keyword">package </span>serves as a concise and organized representation of my professional background, providing a convenient way to share my experience and technologies with others in a clear and structured manner.</span></span>
 <span class="keyword">package </span>about
 
-<span class="comment">// Me represents personal information and experience.</span>
+<span class="comment"<span class="comment">>// Me represents personal information and experience.</span></span>
 <span class="keyword">type </span>Me<span class="keyword"> struct </span><span class="curlybrace">{</span>
-	Name      <span class="primitivetype"> string</span>        <span class="string">`json:<span class="string">"name"</span>`</span>       <span class="comment">// The name of the person.</span>
-	Bio       <span class="primitivetype"> string</span>        <span class="string">`json:<span class="string">"bio"</span>`</span>        <span class="comment">// A brief biography.</span>
-	Experience <span class="keyword">[</span><span class="keyword">]</span>*Experience <span class="string">`json:<span class="string">"experience"</span>`</span> <span class="comment">// List of experiences.</span>
+	Name          <span class="primitivetype"> string</span>        <span class="string">`json:<span class="string">"name"</span>`</span>           <span class="comment"> // The name of the person.</span>
+	Bio           <span class="primitivetype"> string</span>        <span class="string">`json:<span class="string">"bio"</span>`</span>            <span class="comment"> // A brief biography.</span>
+	Experience     <span class="keyword">[</span><span class="keyword">]</span>*Experience <span class="string">`json:<span class="string">"experience"</span>`</span>     <span class="comment"> // List of experiences.</span>
+	ContactOptions <span class="keyword">[</span><span class="keyword">]</span>*Contact    <span class="string">`json:<span class="string">"contact_options"</span>`</span><span class="comment"> // List of contact platform</span>
 <span class="curlybrace">}</span>
 
-<span class="comment">// <span class="function">NewMe</span> creates a new instance of the Me<span class="keyword"> struct </span>with predefined values.</span>
-<span class="comment">// It initializes the Name, Bio, and Experience fields with default values or data obtained from external sources.</span>
-<span class="comment">// Returns a pointer to the newly created Me struct.</span>
+<span class="comment"<span class="comment">>// <span class="function">NewMe</span> creates a new instance of the Me<span class="keyword"> struct </span>with predefined values.</span></span>
+<span class="comment"<span class="comment">>// It initializes the Name, Bio, and Experience fields with default values or data obtained from external sources.</span></span>
+<span class="comment"<span class="comment">>// Returns a pointer to the newly created Me struct.</span></span>
 <span class="keyword">func </span><span class="function">NewMe</span><span class="parenthesis">(</span><span class="parenthesis">)</span> *Me <span class="curlybrace">{</span>
 	<span class="keyword">return </span>&Me<span class="curlybrace">{</span>
 		Name: <span class="string">"Rey David"</span>,
@@ -193,7 +194,8 @@
 			I am a Senior Software Engineer with experience in developing scalable and distributed systems. 
 			I am passionate about leveraging technology to solve complex problems and enjoy collaborating with teams to deliver innovative solutions.
 		`</span>,
-		Experience: <a href="experience.html" title="Expand experience list"><span class="function">ListExperience</span></a><span class="parenthesis">(</span><span class="parenthesis">)</span>,
+		Experience:     <a href="experience.html" title="Expand experience list"><span class="function">ListExperience</span></a><span class="parenthesis">(</span><span class="parenthesis">)</span>,
+		ContactOptions: <a href="contact.html" title="See contact options"><span class="function">ListContactOptions</span></a><span class="parenthesis">(</span><span class="parenthesis">)</span>,
 	<span class="curlybrace">}</span>
 <span class="curlybrace">}</span>
 
@@ -201,23 +203,7 @@
    
 
     <div class="footer">
-        <div class="footerelem">
-            <span>Email: </span>
-            <a href="mailto:rdominguez@tecnologer.net">rdominguez@tecnologer.net</a>
-        </div>
-        <div class="footerelem">
-            <span>LinkedIn: </span>
-            <a
-                href="https://www.linkedin.com/in/rey-david-dominguez-soto/">https://www.linkedin.com/in/rey-david-dominguez-soto/</a>
-        </div>
-        <div class="footerelem">
-            <span>GitHub: </span>
-            <a href="https://github.com/tecnologer">https://github.com/tecnologer</a>
-        </div>
-        <div class="footerelem">
-            <span>Telegram: </span>
-            <a href="https://t.me/tecnologer">https://t.me/tecnologer</a>
-        </div>
+        Tecnologer v2023.0517
     </div>
 </body>
 

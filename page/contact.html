@@ -163,16 +163,45 @@
 
 <body class="editor">
     <header>
-        <h1>{{go_back}}./about/{{file}}.go</h1>
+        <h1><a href="/" title="return to home"><</a>./about/contact.go</h1>
     </header>
 
     <pre>
-{{code}}
+<span class="keyword">package </span>about
+
+<span class="comment"<span class="comment">>// Contact represents a contact platform and address.</span></span>
+<span class="keyword">type </span>Contact<span class="keyword"> struct </span><span class="curlybrace">{</span>
+	Platform<span class="primitivetype"> string</span> <span class="string">`json:<span class="string">"platform"</span>`</span><span class="comment"> // The contact platform <span class="parenthesis">(</span>e.g., email, social media<span class="parenthesis">)</span>.</span>
+	Address <span class="primitivetype"> string</span> <span class="string">`json:<span class="string">"address"</span>`</span> <span class="comment"> // The contact address <span class="parenthesis">(</span>e.g., email address, social media handle<span class="parenthesis">)</span>.</span>
+<span class="curlybrace">}</span>
+
+<span class="comment"<span class="comment">>// <a href="contact.html" title="See contact options"><span class="function">ListContactOptions</span></a> returns a list of contact platforms.</span></span>
+<span class="keyword">func </span><a href="contact.html" title="See contact options"><span class="function">ListContactOptions</span></a><span class="parenthesis">(</span><span class="parenthesis">)</span> <span class="keyword">[</span><span class="keyword">]</span>*Contact <span class="curlybrace">{</span>
+	<span class="keyword">return </span><span class="keyword">[</span><span class="keyword">]</span>*Contact<span class="curlybrace">{</span>
+		<span class="curlybrace">{</span>
+			Platform: <span class="string">"Email"</span>,
+			Address:  <span class="string">"<a href="mailto:rdominguez@tecnologer.net">rdominguez@tecnologer.net</a>"</span>,
+		<span class="curlybrace">}</span>,
+		<span class="curlybrace">{</span>
+			Platform: <span class="string">"LinkedIn"</span>,
+			Address:  <span class="string"><a href="https://www.linkedin.com/in/rey-david-dominguez-soto">"https://www.linkedin.com/in/rey-david-dominguez-soto"</a></span>,
+		<span class="curlybrace">}</span>,
+		<span class="curlybrace">{</span>
+			Platform: <span class="string">"GitHub"</span>,
+			Address:  <span class="string"><a href="https://github.com/tecnologer">"https://github.com/tecnologer"</a></span>,
+		<span class="curlybrace">}</span>,
+		<span class="curlybrace">{</span>
+			Platform: <span class="string">"Telegram"</span>,
+			Address:  <span class="string"><a href="https://t.me/tecnologer">"https://t.me/tecnologer"</a></span>,
+		<span class="curlybrace">}</span>,
+	<span class="curlybrace">}</span>
+<span class="curlybrace">}</span>
+
     </pre>
    
 
     <div class="footer">
-        Tecnologer v{{version}}
+        Tecnologer v2023.0517
     </div>
 </body>
 
