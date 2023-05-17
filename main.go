@@ -144,7 +144,7 @@ func main() {
 	rules = map[string][]byte{
 		"{{code}}":    formatText(fileExp),
 		"{{file}}":    []byte("experience"),
-		"{{go_back}}": []byte(`<a href="portfolio/" title="return to home"><</a>`),
+		"{{go_back}}": []byte(`<a href="./" title="return to home"><</a>`),
 		"{{version}}": []byte(version),
 	}
 
@@ -153,7 +153,7 @@ func main() {
 	rules = map[string][]byte{
 		"{{code}}":    formatText(fileContact),
 		"{{file}}":    []byte("contact"),
-		"{{go_back}}": []byte(`<a href="portfolio/" title="return to home"><</a>`),
+		"{{go_back}}": []byte(`<a href="./" title="return to home"><</a>`),
 		"{{version}}": []byte(version),
 	}
 
