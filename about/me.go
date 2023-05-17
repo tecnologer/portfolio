@@ -9,9 +9,9 @@ package about
 
 // Me represents personal information and experience.
 type Me struct {
-	Name       string        `json:"name"`
-	Bio        string        `json:"bio"`
-	Experience []*Experience `json:"experience"`
+	Name       string        `json:"name"`       // The name of the person.
+	Bio        string        `json:"bio"`        // A brief biography.
+	Experience []*Experience `json:"experience"` // List of experiences.
 }
 
 // NewMe creates a new instance of the Me struct with predefined values.

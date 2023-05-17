@@ -178,9 +178,9 @@
 
 <span class="comment">// Me represents personal information and experience.</span>
 <span class="keyword">type </span>Me<span class="keyword"> struct </span><span class="curlybrace">{</span>
-	Name      <span class="primitivetype"> string</span>        <span class="string">`json:<span class="string">"name"</span>`</span>
-	Bio       <span class="primitivetype"> string</span>        <span class="string">`json:<span class="string">"bio"</span>`</span>
-	Experience <span class="keyword">[</span><span class="keyword">]</span>*Experience <span class="string">`json:<span class="string">"experience"</span>`</span>
+	Name      <span class="primitivetype"> string</span>        <span class="string">`json:<span class="string">"name"</span>`</span>       <span class="comment">// The name of the person.</span>
+	Bio       <span class="primitivetype"> string</span>        <span class="string">`json:<span class="string">"bio"</span>`</span>        <span class="comment">// A brief biography.</span>
+	Experience <span class="keyword">[</span><span class="keyword">]</span>*Experience <span class="string">`json:<span class="string">"experience"</span>`</span> <span class="comment">// List of experiences.</span>
 <span class="curlybrace">}</span>
 
 <span class="comment">// <span class="function">NewMe</span> creates a new instance of the Me<span class="keyword"> struct </span>with predefined values.</span>
