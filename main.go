@@ -42,15 +42,15 @@ var (
 		},
 		{
 			symbols: []string{
-				"rdominguez@tecnologer.net",
+				"(rdominguez@tecnologer.net)",
 			},
 			format: `<a href="mailto:${1}" class="s">${1}</a>`,
 		},
 		{
 			symbols: []string{
-				`"(http(s)?:\/\/.+)"`,
+				`(<span class="s">&#34;)(http(s)?:\/\/.+)(&#34;<\/span>)`,
 			},
-			format: `<a href="${2}" class="s">${1}</a>`,
+			format: `$1<a href="$2" class="s">${2}</a>$4`,
 		},
 	}
 )
