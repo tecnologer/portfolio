@@ -83,6 +83,7 @@ func main() {
 		"{{file}}":    []byte("me"),
 		"{{go_back}}": make([]byte, 0),
 		"{{version}}": []byte(version),
+		"{{title}}":   []byte("Tecnologer"),
 	}
 
 	writeFile(pageMePath, insertText(rules, template))
@@ -92,6 +93,7 @@ func main() {
 		"{{file}}":    []byte("experience"),
 		"{{go_back}}": homeIcon(),
 		"{{version}}": []byte(version),
+		"{{title}}":   []byte("Tecnologer | Experience"),
 	}
 
 	writeFile(pageExpPath, insertText(rules, template))
@@ -101,6 +103,7 @@ func main() {
 		"{{file}}":    []byte("contact"),
 		"{{go_back}}": homeIcon(),
 		"{{version}}": []byte(version),
+		"{{title}}":   []byte("Tecnologer | Contact"),
 	}
 
 	writeFile(pageContactPath, insertText(rules, template))
