@@ -18,7 +18,7 @@ func ListExperience() []*Experience {
 			Title:     "Senior Software Engineer",
 			StartDate: "December 2019",
 			EndDate:   "current",
-			Location:  "Gudalajara, Mexico",
+			Location:  "Guadalajara, Mexico",
 			Technologies: []string{
 				"C# dotnet",
 				"MSSQL",

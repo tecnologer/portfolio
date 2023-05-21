@@ -7,22 +7,20 @@ import (
 	"log"
 	"os"
 	"path"
+	"path/filepath"
 	"regexp"
 	"runtime"
+	"strings"
 	"time"
 
 	"github.com/alecthomas/chroma/quick"
 )
 
 var (
-	root, _         = getDir()
-	mePath          = root + "/about/me.go"
-	experiencePath  = root + "/about/experience.go"
-	contactPath     = root + "/about/contact.go"
-	templatePath    = root + "/template/template.html"
-	pageMePath      = root + "/page/index.html"
-	pageExpPath     = root + "/page/experience.html"
-	pageContactPath = root + "/page/contact.html"
+	root, _      = getDir()
+	sourcePath   = filepath.Join(root, "about")
+	templatePath = filepath.Join(root, "template", "template.html")
+	pagePath     = filepath.Join(root, "page")
 
 	format = []struct {
 		symbols []string
@@ -55,20 +53,15 @@ var (
 	}
 )
 
+type source struct {
+	name string
+	path string
+}
+
 func main() {
-	version := time.Now().Format("2006.0102")
+	version := time.Now().Format("2006.0102.1504")
 
-	fileMe, err := os.ReadFile(mePath)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	fileExp, err := os.ReadFile(experiencePath)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	fileContact, err := os.ReadFile(contactPath)
+	files, err := getSourceFiles(sourcePath)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -78,36 +71,46 @@ func main() {
 		log.Fatal(err)
 	}
 
-	rules := map[string][]byte{
-		"{{code}}":    formatText(fileMe),
-		"{{file}}":    []byte("me"),
-		"{{go_back}}": make([]byte, 0),
-		"{{version}}": []byte(version),
-		"{{title}}":   []byte("Tecnologer"),
+	var (
+		goBack    []byte
+		rules     map[string][]byte
+		titlePage string
+		htmlPath  string
+	)
+
+	for _, file := range files {
+		content, err := os.ReadFile(file.path)
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		goBack = []byte{}
+		htmlPath = "index"
+
+		if file.name != "me" {
+			goBack = homeIcon()
+			htmlPath = file.name
+		}
+
+		titlePage = strings.ToUpper(string(file.name[0])) + strings.ToLower(string(file.name[1:]))
+
+		rules = map[string][]byte{
+			"{{code}}":    formatText(content),
+			"{{file}}":    []byte(file.name),
+			"{{go_back}}": goBack,
+			"{{version}}": []byte(version),
+			"{{title}}":   []byte("Tecnologer | " + titlePage),
+		}
+
+		htmlPath = fmt.Sprintf("%s.html", filepath.Join(pagePath, htmlPath))
+
+		err = writeFile(htmlPath, insertText(rules, template))
+		if err != nil {
+			log.Printf("writing %s. Err: %v\n", htmlPath, err)
+		}
+
+		log.Printf("file %s writed correctly.\n", htmlPath)
 	}
-
-	writeFile(pageMePath, insertText(rules, template))
-
-	rules = map[string][]byte{
-		"{{code}}":    formatText(fileExp),
-		"{{file}}":    []byte("experience"),
-		"{{go_back}}": homeIcon(),
-		"{{version}}": []byte(version),
-		"{{title}}":   []byte("Tecnologer | Experience"),
-	}
-
-	writeFile(pageExpPath, insertText(rules, template))
-
-	rules = map[string][]byte{
-		"{{code}}":    formatText(fileContact),
-		"{{file}}":    []byte("contact"),
-		"{{go_back}}": homeIcon(),
-		"{{version}}": []byte(version),
-		"{{title}}":   []byte("Tecnologer | Contact"),
-	}
-
-	writeFile(pageContactPath, insertText(rules, template))
-
 }
 
 func formatText(fileContent []byte) []byte {
@@ -165,4 +168,26 @@ func homeIcon() []byte {
     <path d="M 25 1.0507812 C 24.7825 1.0507812 24.565859 1.1197656 24.380859 1.2597656 L 1.3808594 19.210938 C 0.95085938 19.550938 0.8709375 20.179141 1.2109375 20.619141 C 1.5509375 21.049141 2.1791406 21.129062 2.6191406 20.789062 L 4 19.710938 L 4 46 C 4 46.55 4.45 47 5 47 L 19 47 L 19 29 L 31 29 L 31 47 L 45 47 C 45.55 47 46 46.55 46 46 L 46 19.710938 L 47.380859 20.789062 C 47.570859 20.929063 47.78 21 48 21 C 48.3 21 48.589063 20.869141 48.789062 20.619141 C 49.129063 20.179141 49.049141 19.550938 48.619141 19.210938 L 25.619141 1.2597656 C 25.434141 1.1197656 25.2175 1.0507812 25 1.0507812 z M 35 5 L 35 6.0507812 L 41 10.730469 L 41 5 L 35 5 z"></path>
 </svg>
 	</a>`)
+}
+
+func getSourceFiles(path string) ([]source, error) {
+	entries, err := os.ReadDir(path)
+	if err != nil {
+		return nil, err
+	}
+
+	files := make([]source, 0)
+	for _, entry := range entries {
+		name := entry.Name()
+		if filepath.Ext(name) != ".go" {
+			continue
+		}
+
+		files = append(files, source{
+			name: name[:len(name)-3],
+			path: filepath.Join(path, name),
+		})
+	}
+
+	return files, nil
 }
