@@ -35,6 +35,10 @@ func ListExperience() []*Experience {
 				"AWS",
 				"Git",
 				"Github Actions",
+				"Windows",
+				"WSL",
+				"Ubuntu",
+				"MacOS",
 			},
 		},
 		{
@@ -54,6 +58,8 @@ func ListExperience() []*Experience {
 				"SQLite",
 				"Zigbee",
 				"Git/GitLab",
+				"Windows",
+				"Ubuntu",
 			},
 		},
 		{
@@ -74,6 +80,7 @@ func ListExperience() []*Experience {
 				"MSSQL",
 				"TFS",
 				"Git/Github",
+				"Windows",
 			},
 		},
 		{
@@ -94,6 +101,7 @@ func ListExperience() []*Experience {
 				"AngularJS",
 				"JQuery",
 				"MSSQL",
+				"Windows",
 			},
 		},
 	}
