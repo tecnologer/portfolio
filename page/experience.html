@@ -204,6 +204,7 @@ body { color: #f8f8f2; background-color: #282a36; }
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">StartDate</span>    <span class="kt">string</span>   <span class="s">`json:&#34;start_date&#34;`</span>   <span class="c1">// The start date of the contract.
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">EndDate</span>      <span class="kt">string</span>   <span class="s">`json:&#34;end_date&#34;`</span>     <span class="c1">// The end date of the contract.
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">Location</span>     <span class="kt">string</span>   <span class="s">`json:&#34;location&#34;`</span>     <span class="c1">// The location of the company.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">Roles</span>        <span class="p">[]</span><span class="kt">string</span> <span class="s">`json:&#34;role&#34;`</span>         <span class="c1">// The list of roles perfomed
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">Technologies</span> <span class="p">[]</span><span class="kt">string</span> <span class="s">`json:&#34;technologies&#34;`</span> <span class="c1">// The technologies used in the experience.
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
@@ -215,7 +216,13 @@ body { color: #f8f8f2; background-color: #282a36; }
 </span></span><span class="line"><span class="cl">			<span class="nx">Title</span><span class="p">:</span>     <span class="s">&#34;Senior Software Engineer&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">			<span class="nx">StartDate</span><span class="p">:</span> <span class="s">&#34;December 2019&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">			<span class="nx">EndDate</span><span class="p">:</span>   <span class="s">&#34;current&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">			<span class="nx">Location</span><span class="p">:</span>  <span class="s">&#34;Gudalajara, Mexico&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">Location</span><span class="p">:</span>  <span class="s">&#34;Guadalajara, Mexico&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">Roles</span><span class="p">:</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="s">&#34;Back-End&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="s">&#34;Software Architect&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="s">&#34;Speaker&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="s">&#34;People Manager&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">			<span class="p">},</span>
 </span></span><span class="line"><span class="cl">			<span class="nx">Technologies</span><span class="p">:</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span>
 </span></span><span class="line"><span class="cl">				<span class="s">&#34;C# dotnet&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">				<span class="s">&#34;MSSQL&#34;</span><span class="p">,</span>
@@ -233,6 +240,10 @@ body { color: #f8f8f2; background-color: #282a36; }
 </span></span><span class="line"><span class="cl">			<span class="nx">StartDate</span><span class="p">:</span> <span class="s">&#34;March 2017&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">			<span class="nx">EndDate</span><span class="p">:</span>   <span class="s">&#34;December 2019&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">			<span class="nx">Location</span><span class="p">:</span>  <span class="s">&#34;Ensenada, Mexico&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">Roles</span><span class="p">:</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="s">&#34;Full-stack&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="s">&#34;Software Architect&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">			<span class="p">},</span>
 </span></span><span class="line"><span class="cl">			<span class="nx">Technologies</span><span class="p">:</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span>
 </span></span><span class="line"><span class="cl">				<span class="s">&#34;C# .NET&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">				<span class="s">&#34;WPF&#34;</span><span class="p">,</span>
@@ -248,6 +259,10 @@ body { color: #f8f8f2; background-color: #282a36; }
 </span></span><span class="line"><span class="cl">			<span class="nx">StartDate</span><span class="p">:</span> <span class="s">&#34;August 2015&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">			<span class="nx">EndDate</span><span class="p">:</span>   <span class="s">&#34;January 2017&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">			<span class="nx">Location</span><span class="p">:</span>  <span class="s">&#34;Jeddah, Saudi Arabia&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">Roles</span><span class="p">:</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="s">&#34;Full-stack&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="s">&#34;Software Architect&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">			<span class="p">},</span>
 </span></span><span class="line"><span class="cl">			<span class="nx">Technologies</span><span class="p">:</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span>
 </span></span><span class="line"><span class="cl">				<span class="s">&#34;C# .NET MVC 5&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">				<span class="s">&#34;HTML 5&#34;</span><span class="p">,</span>
@@ -264,6 +279,9 @@ body { color: #f8f8f2; background-color: #282a36; }
 </span></span><span class="line"><span class="cl">			<span class="nx">StartDate</span><span class="p">:</span> <span class="s">&#34;June 2012&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">			<span class="nx">EndDate</span><span class="p">:</span>   <span class="s">&#34;June 2015&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">			<span class="nx">Location</span><span class="p">:</span>  <span class="s">&#34;Culiacan, Mexico&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">Roles</span><span class="p">:</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="s">&#34;Full-stack&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">			<span class="p">},</span>
 </span></span><span class="line"><span class="cl">			<span class="nx">Technologies</span><span class="p">:</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span>
 </span></span><span class="line"><span class="cl">				<span class="s">&#34;Coldfusion&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">				<span class="s">&#34;Python&#34;</span><span class="p">,</span>
@@ -285,7 +303,7 @@ body { color: #f8f8f2; background-color: #282a36; }
    
 
     <div class="footer">
-        Tecnologer v2023.0521.0046
+        Tecnologer v2023.0602.1933
     </div>
 </body>
 

@@ -1,10 +1,4 @@
 // The "about" package is a collection of definitions and structures that aim to expose my professional experience and the technologies I have worked with. It provides a convenient way to present my background and skills to others who are interested in learning more about my expertise.
-
-// Within the "about" package, you will find various structures that represent different aspects of my experience. These structures may include details such as my work history, projects I have been involved in, technologies I have utilized, and any other relevant information that showcases my capabilities.
-
-// By utilizing the "about" package, it becomes easier to present a comprehensive overview of my professional journey, making it simpler for potential collaborators or employers to understand my skills and areas of expertise.
-
-// Overall, the "about" package serves as a concise and organized representation of my professional background, providing a convenient way to share my experience and technologies with others in a clear and structured manner.
 package about
 
 // Me represents personal information and experience.

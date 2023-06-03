@@ -7,6 +7,7 @@ type Experience struct {
 	StartDate    string   `json:"start_date"`   // The start date of the contract.
 	EndDate      string   `json:"end_date"`     // The end date of the contract.
 	Location     string   `json:"location"`     // The location of the company.
+	Roles        []string `json:"role"`         // The list of roles perfomed
 	Technologies []string `json:"technologies"` // The technologies used in the experience.
 }
 
@@ -19,6 +20,12 @@ func ListExperience() []*Experience {
 			StartDate: "December 2019",
 			EndDate:   "current",
 			Location:  "Guadalajara, Mexico",
+			Roles: []string{
+				"Back-End",
+				"Software Architect",
+				"Speaker",
+				"People Manager",
+			},
 			Technologies: []string{
 				"C# dotnet",
 				"MSSQL",
@@ -36,6 +43,10 @@ func ListExperience() []*Experience {
 			StartDate: "March 2017",
 			EndDate:   "December 2019",
 			Location:  "Ensenada, Mexico",
+			Roles: []string{
+				"Full-stack",
+				"Software Architect",
+			},
 			Technologies: []string{
 				"C# .NET",
 				"WPF",
@@ -51,6 +62,10 @@ func ListExperience() []*Experience {
 			StartDate: "August 2015",
 			EndDate:   "January 2017",
 			Location:  "Jeddah, Saudi Arabia",
+			Roles: []string{
+				"Full-stack",
+				"Software Architect",
+			},
 			Technologies: []string{
 				"C# .NET MVC 5",
 				"HTML 5",
@@ -67,6 +82,9 @@ func ListExperience() []*Experience {
 			StartDate: "June 2012",
 			EndDate:   "June 2015",
 			Location:  "Culiacan, Mexico",
+			Roles: []string{
+				"Full-stack",
+			},
 			Technologies: []string{
 				"Coldfusion",
 				"Python",
