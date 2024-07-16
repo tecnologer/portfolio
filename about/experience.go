@@ -15,10 +15,30 @@ type Experience struct {
 func ListExperience() []*Experience {
 	return []*Experience{
 		{
+			Company:   "DefectDojo",
+			Title:     "Senior Back-End Engineer",
+			StartDate: "April 2024",
+			EndDate:   "Present",
+			Location:  "Remote",
+			Roles: []string{
+				"Back-End",
+			},
+			Technologies: []string{
+				"Go",
+				"PostgreSQL",
+				"Docker",
+				"Docker Compose",
+				"Git",
+				"Github Actions",
+				"Linux",
+				"Bash",
+			},
+		},
+		{
 			Company:   "Pentalog",
 			Title:     "Senior Software Engineer",
 			StartDate: "December 2019",
-			EndDate:   "current",
+			EndDate:   "February 2024",
 			Location:  "Guadalajara, Mexico",
 			Roles: []string{
 				"Back-End",
