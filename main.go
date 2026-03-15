@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"log"
 	"os"
-	"path"
 	"path/filepath"
 	"regexp"
 	"runtime"
@@ -37,6 +36,18 @@ var (
 				`(<span class="nx">ContactOptions<\/span><span class="p">:<\/span>\s*<span class="nf">)(ListContactOptions)(<\/span>)`,
 			},
 			format: `$1<a href="contact.html" title="See contact options" class="nf">$2</a>$3`,
+		},
+		{
+			symbols: []string{
+				`(<span class="nx">Education<\/span><span class="p">:<\/span>\s*<span class="nf">)(ListEducation)(<\/span>)`,
+			},
+			format: `$1<a href="education.html" title="See education" class="nf">$2</a>$3`,
+		},
+		{
+			symbols: []string{
+				`(<span class="nx">Certifications<\/span><span class="p">:<\/span>\s*<span class="nf">)(ListCertifications)(<\/span>)`,
+			},
+			format: `$1<a href="certification.html" title="See certifications" class="nf">$2</a>$3`,
 		},
 		{
 			symbols: []string{
@@ -109,7 +120,7 @@ func main() {
 			log.Printf("writing %s. Err: %v\n", htmlPath, err)
 		}
 
-		log.Printf("file %s writed correctly.\n", htmlPath)
+		log.Printf("file %s written correctly.\n", htmlPath)
 	}
 }
 
@@ -134,7 +145,6 @@ func formatText(fileContent []byte) []byte {
 				continue
 			}
 			fileContent = reg.ReplaceAll(fileContent, []byte(f.format))
-			// fileContent = bytes.ReplaceAll(fileContent, []byte(word), []byte(fmt.Sprintf(f.format, word)))
 		}
 	}
 
@@ -142,7 +152,7 @@ func formatText(fileContent []byte) []byte {
 }
 
 func writeFile(path string, content []byte) error {
-	return os.WriteFile(path, content, 0777)
+	return os.WriteFile(path, content, 0o644)
 }
 
 func insertText(rules map[string][]byte, origin []byte) []byte {
@@ -156,10 +166,10 @@ func insertText(rules map[string][]byte, origin []byte) []byte {
 func getDir() (string, error) {
 	_, filename, _, ok := runtime.Caller(1)
 	if !ok {
-		return "", errors.New("get dir for connection file")
+		return "", errors.New("could not determine source directory")
 	}
 
-	return path.Dir(filename), nil
+	return filepath.Dir(filename), nil
 }
 
 func homeIcon() []byte {
@@ -176,7 +186,7 @@ func getSourceFiles(path string) ([]source, error) {
 		return nil, err
 	}
 
-	files := make([]source, 0)
+	var files []source
 	for _, entry := range entries {
 		name := entry.Name()
 		if filepath.Ext(name) != ".go" {
