@@ -1,25 +1,28 @@
-// The "about" package is a collection of definitions and structures that aim to expose my professional experience and the technologies I have worked with. It provides a convenient way to present my background and skills to others who are interested in learning more about my expertise.
+// Package about provides structures and data representing personal and
+// professional information for the portfolio.
 package about
 
-// Me represents personal information and experience.
+// Me represents the portfolio owner's personal and professional profile.
 type Me struct {
-	Name           string        `json:"name"`            // The name of the person.
-	Bio            string        `json:"bio"`             // A brief biography.
-	Experience     []*Experience `json:"experience"`      // List of experiences.
-	ContactOptions []*Contact    `json:"contact_options"` // List of contact platform
+	Name           string           `json:"name"`            // Full display name.
+	Bio            string           `json:"bio"`             // Short professional summary.
+	Experience     []*Experience    `json:"experience"`      // Chronological work history.
+	Education      []*Education     `json:"education"`       // Academic background.
+	Certifications []*Certification `json:"certifications"`  // Professional certifications.
+	ContactOptions []*Contact       `json:"contact_options"` // Available contact channels.
 }
 
-// NewMe creates a new instance of the Me struct with predefined values.
-// It initializes the Name, Bio, and Experience fields with default values or data obtained from external sources.
-// Returns a pointer to the newly created Me struct.
+// NewMe returns a new Me populated with predefined personal and professional information.
 func NewMe() *Me {
 	return &Me{
-		Name: "Rey David",
-		Bio: `
-			I am a Senior Software Engineer with experience in developing scalable and distributed systems. 
-			I am passionate about leveraging technology to solve complex problems and enjoy collaborating with teams to deliver innovative solutions.
-		`,
+		Name: "Rey David Dominguez Soto",
+		Bio: `I am Rey David, a Senior Software Engineer with over 13 years of experience,
+			specializing in Go backend engineering, security platforms, DevSecOps automation,
+			and cloud integrations. I am passionate about solving complex problems and
+			building innovative solutions.`,
 		Experience:     ListExperience(),
+		Education:      ListEducation(),
+		Certifications: ListCertifications(),
 		ContactOptions: ListContactOptions(),
 	}
 }

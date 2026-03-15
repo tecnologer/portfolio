@@ -1,12 +1,12 @@
 package about
 
-// Contact represents a contact platform and address.
+// Contact represents a channel through which the portfolio owner can be reached.
 type Contact struct {
-	Platform string `json:"platform"` // The contact platform (e.g., email, social media).
-	Address  string `json:"address"`  // The contact address (e.g., email address, social media handle).
+	Platform string `json:"platform"` // Service or medium (e.g. Email, LinkedIn, GitHub).
+	Address  string `json:"address"`  // URL or address on that platform.
 }
 
-// ListContactOptions returns a list of contact platforms.
+// ListContactOptions returns the available contact channels.
 func ListContactOptions() []*Contact {
 	return []*Contact{
 		{
@@ -15,15 +15,23 @@ func ListContactOptions() []*Contact {
 		},
 		{
 			Platform: "LinkedIn",
-			Address:  "https://www.linkedin.com/in/rey-david-dominguez-soto",
+			Address:  "https://www.linkedin.com/in/tecnologer",
 		},
 		{
 			Platform: "GitHub",
-			Address:  "https://github.com/tecnologer",
+			Address:  "https://github.com/Tecnologer",
+		},
+		{
+			Platform: "GitLab",
+			Address:  "https://gitlab.com/tecnologer",
 		},
 		{
 			Platform: "Telegram",
 			Address:  "https://t.me/tecnologer",
+		},
+		{
+			Platform: "Personal Website",
+			Address:  "https://www.tecnologer.net",
 		},
 	}
 }
