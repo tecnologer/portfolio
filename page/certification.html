@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Tecnologer | Me</title>
+    <title>Tecnologer | Certification</title>
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-2ZHSBVSQV5"></script>
@@ -14,7 +14,7 @@
         gtag('config', 'G-2ZHSBVSQV5');
     </script>
     <meta charset="UTF-8">
-    <meta property="og:title" content="Tecnologer | Me">
+    <meta property="og:title" content="Tecnologer | Certification">
     <meta property="og:description" content="Tecnologer's landing page">
     <meta property="og:image" content="cover.png">
     <meta name="description" content="Tecnologer's landing page">
@@ -121,7 +121,11 @@
 
 <body class="editor">
     <header>
-        <h1>./about/me.go</h1>
+        <h1><a href="index.html" class="icon-link" title="return to home">
+		<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0 -5 50 50">
+    <path d="M 25 1.0507812 C 24.7825 1.0507812 24.565859 1.1197656 24.380859 1.2597656 L 1.3808594 19.210938 C 0.95085938 19.550938 0.8709375 20.179141 1.2109375 20.619141 C 1.5509375 21.049141 2.1791406 21.129062 2.6191406 20.789062 L 4 19.710938 L 4 46 C 4 46.55 4.45 47 5 47 L 19 47 L 19 29 L 31 29 L 31 47 L 45 47 C 45.55 47 46 46.55 46 46 L 46 19.710938 L 47.380859 20.789062 C 47.570859 20.929063 47.78 21 48 21 C 48.3 21 48.589063 20.869141 48.789062 20.619141 C 49.129063 20.179141 49.049141 19.550938 48.619141 19.210938 L 25.619141 1.2597656 C 25.434141 1.1197656 25.2175 1.0507812 25 1.0507812 z M 35 5 L 35 6.0507812 L 41 10.730469 L 41 5 L 35 5 z"></path>
+</svg>
+	</a>./about/certification.go</h1>
     </header>
 
     <pre>
@@ -191,32 +195,20 @@
 /* GenericUnderline */ .chroma .gl { text-decoration: underline }
 body { color: #f8f8f2; background-color: #282a36; }
 </style><body class="bg">
-<pre tabindex="0" class="chroma"><code><span class="line"><span class="cl"><span class="c1">// Package about provides structures and data representing personal and
-</span></span></span><span class="line"><span class="cl"><span class="c1">// professional information for the portfolio.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kn">package</span> <span class="nx">about</span>
+<pre tabindex="0" class="chroma"><code><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">about</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">// Me represents the portfolio owner&#39;s personal and professional profile.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">type</span> <span class="nx">Me</span> <span class="kd">struct</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="nx">Name</span>           <span class="kt">string</span>           <span class="s">`json:&#34;name&#34;`</span>            <span class="c1">// Full display name.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">Bio</span>            <span class="kt">string</span>           <span class="s">`json:&#34;bio&#34;`</span>             <span class="c1">// Short professional summary.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">Experience</span>     <span class="p">[]</span><span class="o">*</span><span class="nx">Experience</span>    <span class="s">`json:&#34;experience&#34;`</span>      <span class="c1">// Chronological work history.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">Education</span>      <span class="p">[]</span><span class="o">*</span><span class="nx">Education</span>     <span class="s">`json:&#34;education&#34;`</span>       <span class="c1">// Academic background.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">Certifications</span> <span class="p">[]</span><span class="o">*</span><span class="nx">Certification</span> <span class="s">`json:&#34;certifications&#34;`</span>  <span class="c1">// Professional certifications.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">ContactOptions</span> <span class="p">[]</span><span class="o">*</span><span class="nx">Contact</span>       <span class="s">`json:&#34;contact_options&#34;`</span> <span class="c1">// Available contact channels.
+</span></span><span class="line"><span class="cl"><span class="c1">// Certification represents a professional certification.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">type</span> <span class="nx">Certification</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">Name</span> <span class="kt">string</span> <span class="s">`json:&#34;name&#34;`</span> <span class="c1">// Certification title.
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">// NewMe returns a new Me populated with predefined personal and professional information.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">func</span> <span class="nf">NewMe</span><span class="p">()</span> <span class="o">*</span><span class="nx">Me</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="o">&amp;</span><span class="nx">Me</span><span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="nx">Name</span><span class="p">:</span> <span class="s">&#34;Rey David Dominguez Soto&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">		<span class="nx">Bio</span><span class="p">:</span> <span class="s">`I am Rey David, a Senior Software Engineer with over 13 years of experience,
-</span></span></span><span class="line"><span class="cl"><span class="s">			specializing in Go backend engineering, security platforms, DevSecOps automation,
-</span></span></span><span class="line"><span class="cl"><span class="s">			and cloud integrations. I am passionate about solving complex problems and
-</span></span></span><span class="line"><span class="cl"><span class="s">			building innovative solutions.`</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">		<span class="nx">Experience</span><span class="p">:</span>     <span class="nf"><a href="experience.html" title="Expand experience list" class="nf">ListExperience</a></span><span class="p">(),</span>
-</span></span><span class="line"><span class="cl">		<span class="nx">Education</span><span class="p">:</span>      <span class="nf"><a href="education.html" title="See education" class="nf">ListEducation</a></span><span class="p">(),</span>
-</span></span><span class="line"><span class="cl">		<span class="nx">Certifications</span><span class="p">:</span> <span class="nf"><a href="certification.html" title="See certifications" class="nf">ListCertifications</a></span><span class="p">(),</span>
-</span></span><span class="line"><span class="cl">		<span class="nx">ContactOptions</span><span class="p">:</span> <span class="nf"><a href="contact.html" title="See contact options" class="nf">ListContactOptions</a></span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// ListCertifications returns the list of professional certifications.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">func</span> <span class="nf">ListCertifications</span><span class="p">()</span> <span class="p">[]</span><span class="o">*</span><span class="nx">Certification</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="p">[]</span><span class="o">*</span><span class="nx">Certification</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span><span class="nx">Name</span><span class="p">:</span> <span class="s">&#34;Generative AI for Software Developers Specialization&#34;</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span><span class="nx">Name</span><span class="p">:</span> <span class="s">&#34;Generative AI: Prompt Engineering Basics&#34;</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span><span class="nx">Name</span><span class="p">:</span> <span class="s">&#34;Generative AI: Introduction and Applications&#34;</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span><span class="nx">Name</span><span class="p">:</span> <span class="s">&#34;Foundations of Cybersecurity&#34;</span><span class="p">},</span>
 </span></span><span class="line"><span class="cl">	<span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre>

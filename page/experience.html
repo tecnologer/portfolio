@@ -197,28 +197,30 @@ body { color: #f8f8f2; background-color: #282a36; }
 </style><body class="bg">
 <pre tabindex="0" class="chroma"><code><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">about</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">// Experience represents a work experience.
+</span></span><span class="line"><span class="cl"><span class="c1">// Experience represents a single work experience entry.
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">type</span> <span class="nx">Experience</span> <span class="kd">struct</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="nx">Company</span>      <span class="kt">string</span>   <span class="s">`json:&#34;company&#34;`</span>      <span class="c1">// The name of the company.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">Title</span>        <span class="kt">string</span>   <span class="s">`json:&#34;title&#34;`</span>        <span class="c1">// The job title.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">StartDate</span>    <span class="kt">string</span>   <span class="s">`json:&#34;start_date&#34;`</span>   <span class="c1">// The start date of the contract.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">EndDate</span>      <span class="kt">string</span>   <span class="s">`json:&#34;end_date&#34;`</span>     <span class="c1">// The end date of the contract.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">Location</span>     <span class="kt">string</span>   <span class="s">`json:&#34;location&#34;`</span>     <span class="c1">// The location of the company.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">Roles</span>        <span class="p">[]</span><span class="kt">string</span> <span class="s">`json:&#34;role&#34;`</span>         <span class="c1">// The list of roles perfomed
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">Technologies</span> <span class="p">[]</span><span class="kt">string</span> <span class="s">`json:&#34;technologies&#34;`</span> <span class="c1">// The technologies used in the experience.
+</span></span><span class="line"><span class="cl">	<span class="nx">Company</span>      <span class="kt">string</span>   <span class="s">`json:&#34;company&#34;`</span>      <span class="c1">// Employer name.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">Title</span>        <span class="kt">string</span>   <span class="s">`json:&#34;title&#34;`</span>        <span class="c1">// Job title held.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">StartDate</span>    <span class="kt">string</span>   <span class="s">`json:&#34;start_date&#34;`</span>   <span class="c1">// Month and year the role began.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">EndDate</span>      <span class="kt">string</span>   <span class="s">`json:&#34;end_date&#34;`</span>     <span class="c1">// Month and year the role ended, or &#34;Present&#34;.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">Location</span>     <span class="kt">string</span>   <span class="s">`json:&#34;location&#34;`</span>     <span class="c1">// City, country, or &#34;Remote&#34;.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">Roles</span>        <span class="p">[]</span><span class="kt">string</span> <span class="s">`json:&#34;roles&#34;`</span>        <span class="c1">// Responsibilities performed (e.g. Back-End, Architect).
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">Technologies</span> <span class="p">[]</span><span class="kt">string</span> <span class="s">`json:&#34;technologies&#34;`</span> <span class="c1">// Tools, languages, and platforms used.
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">// ListExperience returns a list of experiences.
+</span></span><span class="line"><span class="cl"><span class="c1">// ListExperience returns the work history in reverse chronological order.
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">func</span> <span class="nf">ListExperience</span><span class="p">()</span> <span class="p">[]</span><span class="o">*</span><span class="nx">Experience</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="p">[]</span><span class="o">*</span><span class="nx">Experience</span><span class="p">{</span>
 </span></span><span class="line"><span class="cl">		<span class="p">{</span>
 </span></span><span class="line"><span class="cl">			<span class="nx">Company</span><span class="p">:</span>   <span class="s">&#34;DefectDojo&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">			<span class="nx">Title</span><span class="p">:</span>     <span class="s">&#34;Senior Back-End Engineer&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">Title</span><span class="p">:</span>     <span class="s">&#34;Senior Software Engineer, Security Tooling&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">			<span class="nx">StartDate</span><span class="p">:</span> <span class="s">&#34;April 2024&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">			<span class="nx">EndDate</span><span class="p">:</span>   <span class="s">&#34;Present&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">			<span class="nx">Location</span><span class="p">:</span>  <span class="s">&#34;Remote&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">Location</span><span class="p">:</span>  <span class="s">&#34;Remote, Mexico&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">			<span class="nx">Roles</span><span class="p">:</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span>
 </span></span><span class="line"><span class="cl">				<span class="s">&#34;Back-End&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="s">&#34;Security Tooling&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="s">&#34;Open Source&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">			<span class="p">},</span>
 </span></span><span class="line"><span class="cl">			<span class="nx">Technologies</span><span class="p">:</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span>
 </span></span><span class="line"><span class="cl">				<span class="s">&#34;Go&#34;</span><span class="p">,</span>
@@ -226,9 +228,25 @@ body { color: #f8f8f2; background-color: #282a36; }
 </span></span><span class="line"><span class="cl">				<span class="s">&#34;Docker&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">				<span class="s">&#34;Docker Compose&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">				<span class="s">&#34;Git&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">				<span class="s">&#34;Github Actions&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="s">&#34;GitHub Actions&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">				<span class="s">&#34;Linux&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">				<span class="s">&#34;Bash&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="s">&#34;REST API&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="s">&#34;Checkmarx One&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="s">&#34;Wiz&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="s">&#34;Snyk&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="s">&#34;SonarCloud&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="s">&#34;SonarQube&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="s">&#34;Dependency-Track&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="s">&#34;IriusRisk&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="s">&#34;Akamai&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="s">&#34;Azure DevOps&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="s">&#34;GitHub Boards&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="s">&#34;GitLab Boards&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="s">&#34;ServiceNow&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="s">&#34;Slack&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="s">&#34;Telegram&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="s">&#34;PagerDuty&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">			<span class="p">},</span>
 </span></span><span class="line"><span class="cl">		<span class="p">},</span>
 </span></span><span class="line"><span class="cl">		<span class="p">{</span>
@@ -236,7 +254,7 @@ body { color: #f8f8f2; background-color: #282a36; }
 </span></span><span class="line"><span class="cl">			<span class="nx">Title</span><span class="p">:</span>     <span class="s">&#34;Senior Software Engineer&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">			<span class="nx">StartDate</span><span class="p">:</span> <span class="s">&#34;December 2019&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">			<span class="nx">EndDate</span><span class="p">:</span>   <span class="s">&#34;February 2024&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">			<span class="nx">Location</span><span class="p">:</span>  <span class="s">&#34;Guadalajara, Mexico&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">Location</span><span class="p">:</span>  <span class="s">&#34;Zapopan, Mexico&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">			<span class="nx">Roles</span><span class="p">:</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span>
 </span></span><span class="line"><span class="cl">				<span class="s">&#34;Back-End&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">				<span class="s">&#34;Software Architect&#34;</span><span class="p">,</span>
@@ -244,18 +262,28 @@ body { color: #f8f8f2; background-color: #282a36; }
 </span></span><span class="line"><span class="cl">				<span class="s">&#34;People Manager&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">			<span class="p">},</span>
 </span></span><span class="line"><span class="cl">			<span class="nx">Technologies</span><span class="p">:</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span>
-</span></span><span class="line"><span class="cl">				<span class="s">&#34;C# dotnet&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">				<span class="s">&#34;MSSQL&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">				<span class="s">&#34;Go&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="s">&#34;Python&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="s">&#34;C# .NET&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="s">&#34;Dotnet Core&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="s">&#34;Entity Framework&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="s">&#34;MSSQL&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">				<span class="s">&#34;PostgreSQL&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="s">&#34;Aurora&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">				<span class="s">&#34;GraphQL&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">				<span class="s">&#34;AWS&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">				<span class="s">&#34;Git&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">				<span class="s">&#34;Github Actions&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">				<span class="s">&#34;Windows&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">				<span class="s">&#34;WSL&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">				<span class="s">&#34;Ubuntu&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">				<span class="s">&#34;MacOS&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="s">&#34;AWS Lambda&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="s">&#34;AWS Cognito&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="s">&#34;AWS S3&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="s">&#34;AWS CloudFormation&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="s">&#34;AWS SAM&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="s">&#34;AWS AppSync&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="s">&#34;AWS Secrets Manager&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="s">&#34;GitHub Actions&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="s">&#34;LangChain&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="s">&#34;OpenAI API&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="s">&#34;Casbin&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="s">&#34;Docker&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="s">&#34;Linux&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">			<span class="p">},</span>
 </span></span><span class="line"><span class="cl">		<span class="p">},</span>
 </span></span><span class="line"><span class="cl">		<span class="p">{</span>
@@ -263,18 +291,19 @@ body { color: #f8f8f2; background-color: #282a36; }
 </span></span><span class="line"><span class="cl">			<span class="nx">Title</span><span class="p">:</span>     <span class="s">&#34;Software Engineer&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">			<span class="nx">StartDate</span><span class="p">:</span> <span class="s">&#34;March 2017&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">			<span class="nx">EndDate</span><span class="p">:</span>   <span class="s">&#34;December 2019&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">			<span class="nx">Location</span><span class="p">:</span>  <span class="s">&#34;Ensenada, Mexico&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">Location</span><span class="p">:</span>  <span class="s">&#34;Ensenada, Baja California, Mexico&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">			<span class="nx">Roles</span><span class="p">:</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span>
-</span></span><span class="line"><span class="cl">				<span class="s">&#34;Full-stack&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="s">&#34;Full-Stack&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">				<span class="s">&#34;Software Architect&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">			<span class="p">},</span>
 </span></span><span class="line"><span class="cl">			<span class="nx">Technologies</span><span class="p">:</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="s">&#34;Go&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">				<span class="s">&#34;C# .NET&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">				<span class="s">&#34;WPF&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">				<span class="s">&#34;Go&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">				<span class="s">&#34;SQLite&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">				<span class="s">&#34;Zigbee&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">				<span class="s">&#34;Git/GitLab&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="s">&#34;Git&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="s">&#34;GitLab&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">				<span class="s">&#34;Windows&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">				<span class="s">&#34;Ubuntu&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">			<span class="p">},</span>
@@ -286,38 +315,42 @@ body { color: #f8f8f2; background-color: #282a36; }
 </span></span><span class="line"><span class="cl">			<span class="nx">EndDate</span><span class="p">:</span>   <span class="s">&#34;January 2017&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">			<span class="nx">Location</span><span class="p">:</span>  <span class="s">&#34;Jeddah, Saudi Arabia&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">			<span class="nx">Roles</span><span class="p">:</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span>
-</span></span><span class="line"><span class="cl">				<span class="s">&#34;Full-stack&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="s">&#34;Full-Stack&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">				<span class="s">&#34;Software Architect&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">			<span class="p">},</span>
 </span></span><span class="line"><span class="cl">			<span class="nx">Technologies</span><span class="p">:</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span>
 </span></span><span class="line"><span class="cl">				<span class="s">&#34;C# .NET MVC 5&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">				<span class="s">&#34;HTML 5&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">				<span class="s">&#34;CSS&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">				<span class="s">&#34;Javascript&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="s">&#34;JavaScript&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">				<span class="s">&#34;MSSQL&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="s">&#34;JQuery&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="s">&#34;AngularJS&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">				<span class="s">&#34;TFS&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">				<span class="s">&#34;Git/Github&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="s">&#34;Git&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">				<span class="s">&#34;Windows&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">			<span class="p">},</span>
 </span></span><span class="line"><span class="cl">		<span class="p">},</span>
 </span></span><span class="line"><span class="cl">		<span class="p">{</span>
 </span></span><span class="line"><span class="cl">			<span class="nx">Company</span><span class="p">:</span>   <span class="s">&#34;RedRabbit MX&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">			<span class="nx">Title</span><span class="p">:</span>     <span class="s">&#34;Full Stack web Developer&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">Title</span><span class="p">:</span>     <span class="s">&#34;Senior Full Stack web Developer&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">			<span class="nx">StartDate</span><span class="p">:</span> <span class="s">&#34;June 2012&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">			<span class="nx">EndDate</span><span class="p">:</span>   <span class="s">&#34;June 2015&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">			<span class="nx">Location</span><span class="p">:</span>  <span class="s">&#34;Culiacan, Mexico&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">Location</span><span class="p">:</span>  <span class="s">&#34;Culiacan, Sinaloa, Mexico&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">			<span class="nx">Roles</span><span class="p">:</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span>
-</span></span><span class="line"><span class="cl">				<span class="s">&#34;Full-stack&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="s">&#34;Full-Stack&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">			<span class="p">},</span>
 </span></span><span class="line"><span class="cl">			<span class="nx">Technologies</span><span class="p">:</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span>
 </span></span><span class="line"><span class="cl">				<span class="s">&#34;Coldfusion&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">				<span class="s">&#34;Python&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">				<span class="s">&#34;HTML 5&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">				<span class="s">&#34;CSS&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">				<span class="s">&#34;Javascript&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">				<span class="s">&#34;AngularJS&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="s">&#34;JavaScript&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">				<span class="s">&#34;JQuery&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="s">&#34;AngularJS&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">				<span class="s">&#34;MSSQL&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="s">&#34;MongoDB&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="s">&#34;Git&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">				<span class="s">&#34;Windows&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">			<span class="p">},</span>
 </span></span><span class="line"><span class="cl">		<span class="p">},</span>
@@ -331,7 +364,7 @@ body { color: #f8f8f2; background-color: #282a36; }
    
 
     <div class="footer">
-        Tecnologer v2024.0715.1850
+        Tecnologer v2026.0315.0101
     </div>
 </body>
 

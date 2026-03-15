@@ -197,13 +197,13 @@ body { color: #f8f8f2; background-color: #282a36; }
 </style><body class="bg">
 <pre tabindex="0" class="chroma"><code><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">about</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">// Contact represents a contact platform and address.
+</span></span><span class="line"><span class="cl"><span class="c1">// Contact represents a channel through which the portfolio owner can be reached.
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">type</span> <span class="nx">Contact</span> <span class="kd">struct</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="nx">Platform</span> <span class="kt">string</span> <span class="s">`json:&#34;platform&#34;`</span> <span class="c1">// The contact platform (e.g., email, social media).
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">Address</span>  <span class="kt">string</span> <span class="s">`json:&#34;address&#34;`</span>  <span class="c1">// The contact address (e.g., email address, social media handle).
+</span></span><span class="line"><span class="cl">	<span class="nx">Platform</span> <span class="kt">string</span> <span class="s">`json:&#34;platform&#34;`</span> <span class="c1">// Service or medium (e.g. Email, LinkedIn, GitHub).
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">Address</span>  <span class="kt">string</span> <span class="s">`json:&#34;address&#34;`</span>  <span class="c1">// URL or address on that platform.
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">// ListContactOptions returns a list of contact platforms.
+</span></span><span class="line"><span class="cl"><span class="c1">// ListContactOptions returns the available contact channels.
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">func</span> <span class="nf">ListContactOptions</span><span class="p">()</span> <span class="p">[]</span><span class="o">*</span><span class="nx">Contact</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="p">[]</span><span class="o">*</span><span class="nx">Contact</span><span class="p">{</span>
 </span></span><span class="line"><span class="cl">		<span class="p">{</span>
@@ -212,15 +212,23 @@ body { color: #f8f8f2; background-color: #282a36; }
 </span></span><span class="line"><span class="cl">		<span class="p">},</span>
 </span></span><span class="line"><span class="cl">		<span class="p">{</span>
 </span></span><span class="line"><span class="cl">			<span class="nx">Platform</span><span class="p">:</span> <span class="s">&#34;LinkedIn&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">			<span class="nx">Address</span><span class="p">:</span>  <span class="s">&#34;<a href="https://www.linkedin.com/in/rey-david-dominguez-soto" class="s">https://www.linkedin.com/in/rey-david-dominguez-soto</a>&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">Address</span><span class="p">:</span>  <span class="s">&#34;<a href="https://www.linkedin.com/in/tecnologer" class="s">https://www.linkedin.com/in/tecnologer</a>&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">		<span class="p">},</span>
 </span></span><span class="line"><span class="cl">		<span class="p">{</span>
 </span></span><span class="line"><span class="cl">			<span class="nx">Platform</span><span class="p">:</span> <span class="s">&#34;GitHub&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">			<span class="nx">Address</span><span class="p">:</span>  <span class="s">&#34;<a href="https://github.com/tecnologer" class="s">https://github.com/tecnologer</a>&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">Address</span><span class="p">:</span>  <span class="s">&#34;<a href="https://github.com/Tecnologer" class="s">https://github.com/Tecnologer</a>&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="p">},</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">Platform</span><span class="p">:</span> <span class="s">&#34;GitLab&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">Address</span><span class="p">:</span>  <span class="s">&#34;<a href="https://gitlab.com/tecnologer" class="s">https://gitlab.com/tecnologer</a>&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">		<span class="p">},</span>
 </span></span><span class="line"><span class="cl">		<span class="p">{</span>
 </span></span><span class="line"><span class="cl">			<span class="nx">Platform</span><span class="p">:</span> <span class="s">&#34;Telegram&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">			<span class="nx">Address</span><span class="p">:</span>  <span class="s">&#34;<a href="https://t.me/tecnologer" class="s">https://t.me/tecnologer</a>&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="p">},</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">Platform</span><span class="p">:</span> <span class="s">&#34;Personal Website&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">Address</span><span class="p">:</span>  <span class="s">&#34;<a href="https://www.tecnologer.net" class="s">https://www.tecnologer.net</a>&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">		<span class="p">},</span>
 </span></span><span class="line"><span class="cl">	<span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
@@ -232,7 +240,7 @@ body { color: #f8f8f2; background-color: #282a36; }
    
 
     <div class="footer">
-        Tecnologer v2024.0715.1850
+        Tecnologer v2026.0315.0101
     </div>
 </body>
 
