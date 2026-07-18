@@ -10,6 +10,7 @@ type Me struct {
 	Education      []*Education     `json:"education"`       // Academic background.
 	Certifications []*Certification `json:"certifications"`  // Professional certifications.
 	ContactOptions []*Contact       `json:"contact_options"` // Available contact channels.
+	Projects       []*Project       `json:"projects"`        // Personal side projects.
 }
 
 // NewMe returns a new Me populated with predefined personal and professional information.
@@ -24,5 +25,6 @@ func NewMe() *Me {
 		Education:      ListEducation(),
 		Certifications: ListCertifications(),
 		ContactOptions: ListContactOptions(),
+		Projects:       ListProjects(),
 	}
 }

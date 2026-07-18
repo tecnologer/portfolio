@@ -2,13 +2,11 @@ package main
 
 import (
 	"bytes"
-	"errors"
 	"fmt"
 	"log"
 	"os"
 	"path/filepath"
 	"regexp"
-	"runtime"
 	"strings"
 	"time"
 
@@ -21,6 +19,11 @@ var (
 	templatePath = filepath.Join(root, "template", "template.html")
 	pagePath     = filepath.Join(root, "page")
 
+	// format's regexes depend on chroma's Go HTML lexer emitting specific span
+	// classes (e.g. "nx", "p", "nf") for the `Field: FuncCall()` token shape.
+	// If chroma is upgraded, nothing here will error if the regexes stop
+	// matching - visually diff the generated page/*.html to confirm
+	// cross-reference links still render.
 	format = []struct {
 		symbols []string
 		format  string
@@ -48,6 +51,12 @@ var (
 				`(<span class="nx">Certifications<\/span><span class="p">:<\/span>\s*<span class="nf">)(ListCertifications)(<\/span>)`,
 			},
 			format: `$1<a href="certification.html" title="See certifications" class="nf">$2</a>$3`,
+		},
+		{
+			symbols: []string{
+				`(<span class="nx">Projects<\/span><span class="p">:<\/span>\s*<span class="nf">)(ListProjects)(<\/span>)`,
+			},
+			format: `$1<a href="projects.html" title="See projects" class="nf">$2</a>$3`,
 		},
 		{
 			symbols: []string{
@@ -118,9 +127,9 @@ func main() {
 		err = writeFile(htmlPath, insertText(rules, template))
 		if err != nil {
 			log.Printf("writing %s. Err: %v\n", htmlPath, err)
+		} else {
+			log.Printf("file %s written correctly.\n", htmlPath)
 		}
-
-		log.Printf("file %s written correctly.\n", htmlPath)
 	}
 }
 
@@ -155,6 +164,11 @@ func writeFile(path string, content []byte) error {
 	return os.WriteFile(path, content, 0o644)
 }
 
+// insertText does raw byte substitution with no automatic escaping. {{code}}
+// is already chroma-highlighted HTML, and {{file}}/{{title}}/{{go_back}}/
+// {{version}} are derived from filenames/constants, so this is safe today.
+// Any new placeholder whose value is NOT already chroma-highlighted HTML
+// must be passed through html.EscapeString before being added to rules.
 func insertText(rules map[string][]byte, origin []byte) []byte {
 	for key, value := range rules {
 		origin = bytes.ReplaceAll(origin, []byte(key), value)
@@ -164,12 +178,7 @@ func insertText(rules map[string][]byte, origin []byte) []byte {
 }
 
 func getDir() (string, error) {
-	_, filename, _, ok := runtime.Caller(1)
-	if !ok {
-		return "", errors.New("could not determine source directory")
-	}
-
-	return filepath.Dir(filename), nil
+	return os.Getwd()
 }
 
 func homeIcon() []byte {
