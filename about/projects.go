@@ -28,7 +28,6 @@ func ListProjects() []*Project {
 			Tagline: "3D-printing quote and order manager. Single Go binary serving a REST API and an embedded Vue SPA, PostgreSQL-backed.",
 			Status:  "In construction (landing page live)",
 			URL:     "https://cotiza3d.com",
-			RepoURL: "", // omitted for this iteration
 			Technologies: []string{
 				"Go", "Vue 3", "PostgreSQL", "Docker",
 			},
