@@ -35,8 +35,14 @@ jobs:
         uses: actions/setup-go@v5
         with:
           go-version-file: 'go.mod'
+      - name: Lint
+        uses: golangci/golangci-lint-action@v8
+        with:
+          version: v2.12
+      - name: Test
+        run: go test ./...
       - name: Generate pages
-        run: go run main.go
+        run: go run . build
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
