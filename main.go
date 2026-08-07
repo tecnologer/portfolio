@@ -1,212 +1,74 @@
+// Command profilegen renders data/resume.yaml into the tecnologer.net
+// landing page.
+//
+// Usage:
+//
+//	profilegen build   [-data data/resume.yaml] [-template template/index.html.tmpl] [-out page]
+//	profilegen extract [-in page/reydavid_experience.md] [-out data/resume.yaml]
+//
+// Typical flow:
+//  1. edit page/reydavid_experience.md
+//  2. `profilegen extract` (local only) regenerates data/resume.yaml
+//  3. commit both
+//  4. `profilegen build` renders page/index.html
 package main
 
 import (
-	"bytes"
+	"flag"
 	"fmt"
-	"log"
 	"os"
-	"path/filepath"
-	"regexp"
-	"strings"
-	"time"
 
-	"github.com/alecthomas/chroma/quick"
+	"github.com/tecnologer/profilegen/internal/portfolio"
 )
-
-var (
-	root, _      = getDir()
-	sourcePath   = filepath.Join(root, "about")
-	templatePath = filepath.Join(root, "template", "template.html")
-	pagePath     = filepath.Join(root, "page")
-
-	// format's regexes depend on chroma's Go HTML lexer emitting specific span
-	// classes (e.g. "nx", "p", "nf") for the `Field: FuncCall()` token shape.
-	// If chroma is upgraded, nothing here will error if the regexes stop
-	// matching - visually diff the generated page/*.html to confirm
-	// cross-reference links still render.
-	format = []struct {
-		symbols []string
-		format  string
-	}{
-		{
-			symbols: []string{
-				`(<span class="nx">Experience<\/span><span class="p">:<\/span>\s*<span class="nf">)(ListExperience)(<\/span>)`,
-			},
-			format: `$1<a href="experience.html" title="Expand experience list" class="nf">$2</a>$3`,
-		},
-		{
-			symbols: []string{
-				`(<span class="nx">ContactOptions<\/span><span class="p">:<\/span>\s*<span class="nf">)(ListContactOptions)(<\/span>)`,
-			},
-			format: `$1<a href="contact.html" title="See contact options" class="nf">$2</a>$3`,
-		},
-		{
-			symbols: []string{
-				`(<span class="nx">Education<\/span><span class="p">:<\/span>\s*<span class="nf">)(ListEducation)(<\/span>)`,
-			},
-			format: `$1<a href="education.html" title="See education" class="nf">$2</a>$3`,
-		},
-		{
-			symbols: []string{
-				`(<span class="nx">Certifications<\/span><span class="p">:<\/span>\s*<span class="nf">)(ListCertifications)(<\/span>)`,
-			},
-			format: `$1<a href="certification.html" title="See certifications" class="nf">$2</a>$3`,
-		},
-		{
-			symbols: []string{
-				`(<span class="nx">Projects<\/span><span class="p">:<\/span>\s*<span class="nf">)(ListProjects)(<\/span>)`,
-			},
-			format: `$1<a href="projects.html" title="See projects" class="nf">$2</a>$3`,
-		},
-		{
-			symbols: []string{
-				"(rdominguez@tecnologer.net)",
-			},
-			format: `<a href="mailto:${1}" class="s">${1}</a>`,
-		},
-		{
-			symbols: []string{
-				`(<span class="s">&#34;)(http(s)?:\/\/.+)(&#34;<\/span>)`,
-			},
-			format: `$1<a href="$2" class="s">${2}</a>$4`,
-		},
-	}
-)
-
-type source struct {
-	name string
-	path string
-}
 
 func main() {
-	version := time.Now().Format("2006.0102.1504")
+	if len(os.Args) < 2 {
+		usage()
+		os.Exit(2)
+	}
 
-	files, err := getSourceFiles(sourcePath)
+	switch os.Args[1] {
+	case "build":
+		fs := flag.NewFlagSet("build", flag.ExitOnError)
+		data := fs.String("data", "data/resume.yaml", "path to the YAML source of truth")
+		tmpl := fs.String("template", "template/index.html.tmpl", "path to the HTML template")
+		out := fs.String("out", "page", "output directory")
+		_ = fs.Parse(os.Args[2:])
+
+		fail(portfolio.Build(*data, *tmpl, *out))
+
+	case "extract":
+		fs := flag.NewFlagSet("extract", flag.ExitOnError)
+		in := fs.String("in", "page/reydavid_experience.md", "path to the resume .md to extract from")
+		out := fs.String("out", "data/resume.yaml", "where to write the YAML")
+		_ = fs.Parse(os.Args[2:])
+
+		fail(portfolio.Extract(*in, *out))
+
+	case "-h", "--help", "help":
+		usage()
+
+	default:
+		fmt.Fprintf(os.Stderr, "profilegen: unknown command %q\n\n", os.Args[1])
+		usage()
+		os.Exit(2)
+	}
+}
+
+func usage() {
+	fmt.Fprint(os.Stderr, `profilegen — yaml-driven portfolio generator
+
+commands:
+  build     render data/resume.yaml → page/index.html
+  extract   scaffold data/resume.yaml from a free-form resume .md
+
+run "profilegen <command> -h" for flags.
+`)
+}
+
+func fail(err error) {
 	if err != nil {
-		log.Fatal(err)
+		fmt.Fprintln(os.Stderr, "profilegen:", err)
+		os.Exit(1)
 	}
-
-	template, err := os.ReadFile(templatePath)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	var (
-		goBack    []byte
-		rules     map[string][]byte
-		titlePage string
-		htmlPath  string
-	)
-
-	for _, file := range files {
-		content, err := os.ReadFile(file.path)
-		if err != nil {
-			log.Fatal(err)
-		}
-
-		goBack = []byte{}
-		htmlPath = "index"
-
-		if file.name != "me" {
-			goBack = homeIcon()
-			htmlPath = file.name
-		}
-
-		titlePage = strings.ToUpper(string(file.name[0])) + strings.ToLower(string(file.name[1:]))
-
-		rules = map[string][]byte{
-			"{{code}}":    formatText(content),
-			"{{file}}":    []byte(file.name),
-			"{{go_back}}": goBack,
-			"{{version}}": []byte(version),
-			"{{title}}":   []byte("Tecnologer | " + titlePage),
-		}
-
-		htmlPath = fmt.Sprintf("%s.html", filepath.Join(pagePath, htmlPath))
-
-		err = writeFile(htmlPath, insertText(rules, template))
-		if err != nil {
-			log.Printf("writing %s. Err: %v\n", htmlPath, err)
-		} else {
-			log.Printf("file %s written correctly.\n", htmlPath)
-		}
-	}
-}
-
-func formatText(fileContent []byte) []byte {
-	var buf bytes.Buffer
-
-	err := quick.Highlight(&buf, string(fileContent), "Go", "html", "dracula")
-	if err != nil {
-		log.Println(err)
-		return fileContent
-	}
-
-	fileContent = buf.Bytes()
-
-	var reg *regexp.Regexp
-
-	for _, f := range format {
-		for _, word := range f.symbols {
-			reg, err = regexp.Compile(fmt.Sprintf("(?mi)%s", word))
-			if err != nil {
-				log.Println(err)
-				continue
-			}
-			fileContent = reg.ReplaceAll(fileContent, []byte(f.format))
-		}
-	}
-
-	return fileContent
-}
-
-func writeFile(path string, content []byte) error {
-	return os.WriteFile(path, content, 0o644)
-}
-
-// insertText does raw byte substitution with no automatic escaping. {{code}}
-// is already chroma-highlighted HTML, and {{file}}/{{title}}/{{go_back}}/
-// {{version}} are derived from filenames/constants, so this is safe today.
-// Any new placeholder whose value is NOT already chroma-highlighted HTML
-// must be passed through html.EscapeString before being added to rules.
-func insertText(rules map[string][]byte, origin []byte) []byte {
-	for key, value := range rules {
-		origin = bytes.ReplaceAll(origin, []byte(key), value)
-	}
-
-	return origin
-}
-
-func getDir() (string, error) {
-	return os.Getwd()
-}
-
-func homeIcon() []byte {
-	return []byte(`<a href="index.html" class="icon-link" title="return to home">
-		<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0 -5 50 50">
-    <path d="M 25 1.0507812 C 24.7825 1.0507812 24.565859 1.1197656 24.380859 1.2597656 L 1.3808594 19.210938 C 0.95085938 19.550938 0.8709375 20.179141 1.2109375 20.619141 C 1.5509375 21.049141 2.1791406 21.129062 2.6191406 20.789062 L 4 19.710938 L 4 46 C 4 46.55 4.45 47 5 47 L 19 47 L 19 29 L 31 29 L 31 47 L 45 47 C 45.55 47 46 46.55 46 46 L 46 19.710938 L 47.380859 20.789062 C 47.570859 20.929063 47.78 21 48 21 C 48.3 21 48.589063 20.869141 48.789062 20.619141 C 49.129063 20.179141 49.049141 19.550938 48.619141 19.210938 L 25.619141 1.2597656 C 25.434141 1.1197656 25.2175 1.0507812 25 1.0507812 z M 35 5 L 35 6.0507812 L 41 10.730469 L 41 5 L 35 5 z"></path>
-</svg>
-	</a>`)
-}
-
-func getSourceFiles(path string) ([]source, error) {
-	entries, err := os.ReadDir(path)
-	if err != nil {
-		return nil, err
-	}
-
-	var files []source
-	for _, entry := range entries {
-		name := entry.Name()
-		if filepath.Ext(name) != ".go" {
-			continue
-		}
-
-		files = append(files, source{
-			name: name[:len(name)-3],
-			path: filepath.Join(path, name),
-		})
-	}
-
-	return files, nil
 }

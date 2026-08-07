@@ -1,7 +1,5 @@
-module github.com/tecnologer/portfolio
+module github.com/tecnologer/profilegen
 
-go 1.18
+go 1.24.7
 
-require github.com/alecthomas/chroma v0.10.0
-
-require github.com/dlclark/regexp2 v1.12.0 // indirect
+require github.com/goccy/go-yaml v1.19.2

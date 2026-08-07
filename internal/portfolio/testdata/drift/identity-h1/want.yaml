@@ -1,0 +1,41 @@
+# resume.yaml — the data `profilegen build` renders. Hand-edit it freely.
+# `profilegen extract` is optional: it rebuilds this file from
+# page/reydavid_experience.md and overwrites any hand edits.
+
+profile:
+  name: Jane Doe
+  role_line: Senior Go Engineer
+  hero_bio_html: ""
+  bio_html: Building distributed systems in Go with gRPC and PostgreSQL.
+contacts: []
+experience:
+- company: Acme Corp
+  title: Senior Engineer
+  start_date: Jan 2020
+  end_date: Present
+  location: Remote
+  roles: []
+  technologies:
+  - Go
+  - PostgreSQL
+education: []
+certifications: []
+search:
+  suggestions:
+  - performance
+  - go
+  - integrations
+  - migration
+  - postgresql
+  stories:
+  - title: Rewrote the connector for 40x throughput on Go and…
+    story: Rewrote the connector for 40x throughput on Go and PostgreSQL.
+    source: acme corp
+    href: "#experience"
+    tags:
+    - performance
+    - migration
+    - integrations
+    - go
+    - postgresql
+    - acme-corp

@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rey David Domínguez · Tecnologer — Senior Go Engineer</title>
+<meta name="description" content="Rey David Domínguez Soto (Tecnologer) — Senior Go Engineer with 13+ years delivering production systems and 8+ in Go: high-throughput distributed systems, developer tooling, and security platform integrations, with 10–40x performance gains rebuilding systems from first principles.">
+<meta property="og:title" content="Rey David Domínguez · Tecnologer — Senior Go Engineer">
+<meta property="og:description" content="Rey David Domínguez Soto (Tecnologer) — Senior Go Engineer with 13+ years delivering production systems and 8+ in Go: high-throughput distributed systems, developer tooling, and security platform integrations, with 10–40x performance gains rebuilding systems from first principles.">
+<meta property="og:url" content="https://tecnologer.net/">
+<meta property="og:type" content="website">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2ZHSBVSQV5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  gtag('js', new Date());
+
+  gtag('config', 'G-2ZHSBVSQV5');
+</script>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta property="og:image" content="cover.png">
+<link rel="canonical" href="https://tecnologer.net">
+<meta name="author" content="Tecnologer">
+<meta name="keywords" content="software, architect, golang, csharp, c#, mssql, postgres">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  /* ============ Design tokens ============ */
+  :root {
+    --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', monospace;
+    --max-w: 1080px;
+    --radius: 12px;
+    --ease: cubic-bezier(.22,.61,.36,1);
+  }
+  [data-theme="dark"] {
+    --bg: #0b0e14;
+    --bg-raise: #11151f;
+    --bg-card: #131826;
+    --border: #1f2637;
+    --border-strong: #2c3550;
+    --text: #e6e9f0;
+    --text-soft: #9aa3b8;
+    --text-faint: #626c85;
+    --accent: #35c3cf;          /* cyan-teal, a nod to Go */
+    --accent-soft: rgba(53,195,207,.12);
+    --accent-2: #f5b453;        /* warm amber highlight */
+    --accent-2-soft: rgba(245,180,83,.12);
+    --shadow: 0 12px 40px rgba(0,0,0,.45);
+    --hero-glow-1: rgba(53,195,207,.09);
+    --hero-glow-2: rgba(245,180,83,.05);
+  }
+  [data-theme="light"] {
+    --bg: #f7f8fa;
+    --bg-raise: #ffffff;
+    --bg-card: #ffffff;
+    --border: #e4e7ee;
+    --border-strong: #cdd3e0;
+    --text: #171c28;
+    --text-soft: #4d576e;
+    --text-faint: #8a93a8;
+    --accent: #0e8a94;
+    --accent-soft: rgba(14,138,148,.10);
+    --accent-2: #b26f0e;
+    --accent-2-soft: rgba(178,111,14,.10);
+    --shadow: 0 12px 40px rgba(23,28,40,.08);
+    --hero-glow-1: rgba(14,138,148,.07);
+    --hero-glow-2: rgba(178,111,14,.05);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.6;
+    transition: background .3s var(--ease), color .3s var(--ease);
+    overflow-x: hidden;
+  }
+  ::selection { background: var(--accent); color: var(--bg); }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+  .wrap { max-width: var(--max-w); margin: 0 auto; padding: 0 24px; }
+  .mono { font-family: var(--font-mono); }
+
+  /* ============ Nav ============ */
+  header {
+    position: sticky; top: 0; z-index: 50;
+    background: color-mix(in srgb, var(--bg) 82%, transparent);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .logo {
+    font-family: var(--font-mono); font-weight: 600; font-size: 1rem;
+    color: var(--text); letter-spacing: -.02em;
+  }
+  .logo:hover { text-decoration: none; }
+  .logo .tilde { color: var(--accent); }
+  .logo .cursor {
+    display: inline-block; width: .55em; height: 1.1em; margin-left: 3px;
+    background: var(--accent); vertical-align: text-bottom;
+    animation: blink 1.1s steps(1) infinite;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+  .nav-links { display: flex; align-items: center; gap: 4px; }
+  .nav-links a {
+    font-family: var(--font-mono); font-size: .82rem; color: var(--text-soft);
+    padding: 8px 12px; border-radius: 8px; transition: color .2s, background .2s;
+  }
+  .nav-links a:hover { color: var(--text); background: var(--accent-soft); text-decoration: none; }
+  .nav-links a .hash { color: var(--accent); margin-right: 2px; }
+  #themeBtn {
+    margin-left: 8px; width: 38px; height: 38px; border-radius: 10px;
+    border: 1px solid var(--border); background: var(--bg-raise); color: var(--text-soft);
+    cursor: pointer; display: grid; place-items: center; font-size: 1rem;
+    transition: border-color .2s, color .2s, transform .2s;
+  }
+  #themeBtn:hover { border-color: var(--accent); color: var(--accent); transform: rotate(15deg); }
+  @media (max-width: 720px) { .nav-links a:not(:last-child) { display: none; } }
+
+  /* ============ Search trigger ============ */
+  #searchTrigger {
+    display: inline-flex; align-items: center; gap: 7px; margin-left: 8px;
+    font-family: var(--font-mono); font-size: .78rem; color: var(--text-soft);
+    background: var(--bg-raise); border: 1px solid var(--border); border-radius: 10px;
+    padding: 8px 12px; cursor: pointer; transition: border-color .2s, color .2s;
+  }
+  #searchTrigger:hover { border-color: var(--accent); color: var(--text); }
+  #searchTrigger .dollar { color: var(--accent); }
+  #searchTrigger kbd {
+    font-family: var(--font-mono); font-size: .62rem; color: var(--text-faint);
+    border: 1px solid var(--border); border-radius: 5px; padding: 1px 6px;
+  }
+  @media (max-width: 720px) { #searchTrigger kbd, #searchTrigger .trigger-dots { display: none; } }
+
+  /* ============ Command palette ============ */
+  .palette-backdrop {
+    position: fixed; inset: 0; z-index: 100;
+    background: rgba(4,6,10,.65); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+    display: none; justify-content: center; align-items: flex-start; padding-top: 12vh;
+  }
+  .palette-backdrop.open { display: flex; }
+  .palette {
+    width: min(680px, 94vw); max-height: 72vh; display: flex; flex-direction: column;
+    background: var(--bg-card); border: 1px solid var(--border-strong);
+    border-radius: 14px; box-shadow: 0 24px 80px rgba(0,0,0,.6); overflow: hidden;
+    animation: pal-in .18s var(--ease);
+  }
+  @keyframes pal-in { from { opacity: 0; transform: translateY(-10px) scale(.98); } }
+  .palette-input {
+    display: flex; align-items: center; gap: 9px;
+    padding: 15px 18px; border-bottom: 1px solid var(--border);
+    font-family: var(--font-mono); font-size: .88rem; overflow: hidden;
+  }
+  .palette-input .dollar { color: var(--accent); }
+  .palette-input .cmd-static { color: var(--text-soft); white-space: nowrap; }
+  .palette-input .quote { color: var(--text-faint); }
+  .palette-input input {
+    background: none; border: none; outline: none; caret-color: var(--accent);
+    color: var(--accent-2); font-family: var(--font-mono); font-size: .88rem;
+    width: 2ch; min-width: 2ch; max-width: 40ch; padding: 0;
+  }
+  .palette-input kbd {
+    margin-left: auto; font-size: .65rem; color: var(--text-faint);
+    border: 1px solid var(--border); border-radius: 6px; padding: 2px 7px; flex-shrink: 0;
+  }
+  @media (max-width: 640px) { .palette-input .cmd-long { display: none; } }
+  .palette-results { padding: 10px; overflow-y: auto; }
+  .palette-group { font-family: var(--font-mono); font-size: .7rem; color: var(--text-faint); padding: 6px 10px; }
+  .palette-empty { font-family: var(--font-mono); font-size: .8rem; color: var(--text-faint); padding: 18px 12px; }
+  .palette-empty b { color: var(--accent-2); font-weight: 500; }
+  .palette-item {
+    display: flex; justify-content: space-between; align-items: center; gap: 12px;
+    padding: 12px 14px; border-radius: 9px; cursor: pointer; border: 1px solid transparent;
+  }
+  .palette-item.selected { background: var(--accent-soft); border-color: var(--accent); }
+  .palette-item b { font-size: .92rem; display: block; }
+  .palette-item p { color: var(--text-soft); font-size: .78rem; margin-top: 2px; line-height: 1.45; }
+  .palette-item mark { background: var(--accent-2-soft); color: var(--accent-2); border-radius: 3px; padding: 0 2px; }
+  .palette-src { font-family: var(--font-mono); font-size: .7rem; color: var(--accent); white-space: nowrap; }
+  .palette-chips { display: flex; gap: 8px; flex-wrap: wrap; padding: 8px 10px 4px; }
+  .palette-chips button {
+    font-family: var(--font-mono); font-size: .72rem; color: var(--text-soft); background: none;
+    border: 1px solid var(--border); border-radius: 999px; padding: 4px 12px; cursor: pointer;
+  }
+  .palette-chips button:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
+  .palette-foot {
+    display: flex; gap: 18px; padding: 10px 18px; border-top: 1px solid var(--border);
+    font-family: var(--font-mono); font-size: .68rem; color: var(--text-faint);
+  }
+
+  /* ============ Hero ============ */
+  .hero { position: relative; padding: 110px 0 90px; }
+  .hero::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background:
+      radial-gradient(600px 380px at 18% 12%, var(--hero-glow-1), transparent 70%),
+      radial-gradient(520px 340px at 85% 60%, var(--hero-glow-2), transparent 70%);
+  }
+  .hero-inner { position: relative; }
+  .prompt {
+    font-family: var(--font-mono); font-size: .88rem; color: var(--text-soft);
+    margin-bottom: 22px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  }
+  .prompt .dollar { color: var(--accent); }
+  .prompt .cmd { color: var(--text); }
+  .prompt .out { color: var(--accent-2); }
+  h1 {
+    font-size: clamp(2.4rem, 6vw, 4.2rem); font-weight: 800; line-height: 1.06;
+    letter-spacing: -.03em; margin-bottom: 18px;
+  }
+  h1 .dim { color: var(--text-faint); font-weight: 700; }
+  .hero-role {
+    font-family: var(--font-mono); font-size: clamp(.95rem, 2vw, 1.12rem);
+    color: var(--accent); margin-bottom: 22px;
+  }
+  .hero-bio { max-width: 620px; color: var(--text-soft); font-size: 1.06rem; margin-bottom: 34px; }
+  .hero-bio strong { color: var(--text); font-weight: 600; }
+  .cta-row { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+  .btn {
+    font-family: var(--font-mono); font-size: .9rem; font-weight: 500;
+    padding: 12px 22px; border-radius: 10px; border: 1px solid transparent;
+    cursor: pointer; transition: transform .2s var(--ease), box-shadow .2s, background .2s, border-color .2s;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn:hover { text-decoration: none; transform: translateY(-2px); }
+  .btn-primary { background: var(--accent); color: var(--bg); }
+  .btn-primary:hover { box-shadow: 0 8px 24px var(--accent-soft), 0 4px 14px rgba(0,0,0,.2); }
+  .btn-ghost { border-color: var(--border-strong); color: var(--text); background: transparent; }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+  .hero-stats {
+    margin-top: 58px; display: grid; grid-template-columns: repeat(3, minmax(0,1fr));
+    gap: 14px; max-width: 640px;
+  }
+  .stat {
+    border: 1px solid var(--border); border-radius: var(--radius);
+    background: var(--bg-raise); padding: 16px 18px;
+  }
+  .stat b { display: block; font-size: 1.45rem; font-weight: 800; letter-spacing: -.02em; }
+  .stat b span { color: var(--accent); }
+  .stat small { color: var(--text-faint); font-family: var(--font-mono); font-size: .72rem; }
+  @media (max-width: 560px) { .hero-stats { grid-template-columns: 1fr 1fr; } }
+
+  /* ============ Search banner ============ */
+  #searchBanner {
+    display: block; width: 100%; max-width: 640px; margin-top: 64px;
+    text-align: left; cursor: pointer; padding: 0; overflow: hidden;
+    background: var(--bg-card); border: 1px solid var(--border-strong); border-radius: 14px;
+    transition: transform .25s var(--ease), border-color .25s, box-shadow .25s;
+  }
+  #searchBanner:hover, #searchBanner:focus-visible {
+    transform: translateY(-3px); border-color: var(--accent);
+    box-shadow: 0 0 0 4px var(--accent-soft), var(--shadow); outline: none;
+  }
+  .term-bar {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 16px; border-bottom: 1px solid var(--border); background: var(--bg-raise);
+  }
+  .term-dots { display: flex; gap: 6px; }
+  .term-dots i { width: 11px; height: 11px; border-radius: 50%; background: var(--border-strong); }
+  #searchBanner:hover .term-dots i:nth-child(1) { background: #ff5f57; }
+  #searchBanner:hover .term-dots i:nth-child(2) { background: #febc2e; }
+  #searchBanner:hover .term-dots i:nth-child(3) { background: #28c840; }
+  .term-title { font-size: .7rem; color: var(--text-faint); }
+  .term-line {
+    display: block; padding: 18px 18px 8px; font-size: .92rem; color: var(--text-soft);
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .term-line .dollar { color: var(--accent); }
+  .term-line .quote { color: var(--text-faint); }
+  .type-kw { color: var(--accent-2); }
+  .term-cursor {
+    display: inline-block; width: .55em; height: 1.05em; margin-left: 2px;
+    background: var(--accent); vertical-align: text-bottom;
+    animation: blink 1.1s steps(1) infinite;
+  }
+  .term-hint { display: block; padding: 0 18px 14px; font-size: .7rem; color: var(--text-faint); }
+  .term-hint kbd {
+    font-family: var(--font-mono); font-size: .62rem; border: 1px solid var(--border);
+    border-radius: 5px; padding: 1px 6px; color: var(--text-soft);
+  }
+  @media (max-width: 640px) {
+    .term-line { font-size: .85rem; }
+    .term-line .cmd-long { display: none; }
+    .term-hint kbd { display: none; }
+  }
+
+  /* ============ Sections ============ */
+  section { padding: 76px 0; }
+  .sec-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 40px; }
+  .sec-head h2 { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 800; letter-spacing: -.02em; }
+  .sec-head .num { font-family: var(--font-mono); color: var(--accent); font-size: .95rem; }
+  .sec-head .line { flex: 1; height: 1px; background: var(--border); }
+
+  /* reveal on scroll */
+  .reveal { opacity: 0; transform: translateY(22px); transition: opacity .6s var(--ease), transform .6s var(--ease); }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+    .logo .cursor { animation: none; }
+    html { scroll-behavior: auto; }
+  }
+
+  /* ============ Experience timeline ============ */
+  .timeline { position: relative; padding-left: 28px; }
+  .timeline::before {
+    content: ""; position: absolute; left: 6px; top: 6px; bottom: 6px;
+    width: 2px; background: var(--border);
+  }
+  .job { position: relative; padding-bottom: 42px; }
+  .job:last-child { padding-bottom: 0; }
+  .job::before {
+    content: ""; position: absolute; left: -28px; top: 7px;
+    width: 14px; height: 14px; border-radius: 50%;
+    background: var(--bg); border: 3px solid var(--accent);
+  }
+  .job.current::before { box-shadow: 0 0 0 5px var(--accent-soft); }
+  .job-top { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+  .job-top h3 { font-size: 1.12rem; font-weight: 700; }
+  .job-top .company { color: var(--accent); font-weight: 600; }
+  .job-meta { font-family: var(--font-mono); font-size: .78rem; color: var(--text-faint); margin: 4px 0 12px; }
+  .roles { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+  .role-tag {
+    font-family: var(--font-mono); font-size: .72rem; color: var(--accent-2);
+    background: var(--accent-2-soft); padding: 3px 10px; border-radius: 999px;
+  }
+  .techs { display: flex; gap: 7px; flex-wrap: wrap; }
+  .tech {
+    font-family: var(--font-mono); font-size: .74rem; color: var(--text-soft);
+    border: 1px solid var(--border); border-radius: 7px; padding: 3px 9px;
+    transition: border-color .2s, color .2s;
+  }
+  .tech:hover { border-color: var(--accent); color: var(--accent); }
+  .tech.hidden-tech { display: none; }
+  .more-btn {
+    font-family: var(--font-mono); font-size: .74rem; color: var(--accent);
+    background: var(--accent-soft); border: none; border-radius: 7px;
+    padding: 3px 9px; cursor: pointer;
+  }
+  .more-btn:hover { text-decoration: underline; }
+
+  /* ============ Projects ============ */
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 22px; }
+  .project {
+    border: 1px solid var(--border); border-radius: var(--radius);
+    background: var(--bg-card); padding: 26px;
+    display: flex; flex-direction: column; gap: 14px;
+    transition: transform .25s var(--ease), border-color .25s, box-shadow .25s;
+  }
+  .project:hover { transform: translateY(-5px); border-color: var(--border-strong); box-shadow: var(--shadow); }
+  .project-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+  .project-head h3 { font-size: 1.15rem; font-weight: 700; }
+  .status {
+    font-family: var(--font-mono); font-size: .68rem; padding: 3px 10px; border-radius: 999px;
+    white-space: nowrap;
+  }
+  .status.live { color: #3fca82; background: rgba(63,202,130,.12); }
+  .status.wip { color: var(--accent-2); background: var(--accent-2-soft); }
+  .project p { color: var(--text-soft); font-size: .93rem; flex: 1; }
+  .project-links { display: flex; gap: 16px; font-family: var(--font-mono); font-size: .82rem; }
+
+  /* ============ Education / certs ============ */
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+  @media (max-width: 720px) { .split { grid-template-columns: 1fr; } }
+  .card {
+    border: 1px solid var(--border); border-radius: var(--radius);
+    background: var(--bg-card); padding: 26px;
+  }
+  .card h3 {
+    font-family: var(--font-mono); font-size: .82rem; font-weight: 600;
+    color: var(--accent); margin-bottom: 18px; letter-spacing: .04em; text-transform: lowercase;
+  }
+  .edu { margin-bottom: 16px; }
+  .edu:last-child { margin-bottom: 0; }
+  .edu b { display: block; font-size: .95rem; }
+  .edu span { color: var(--text-soft); font-size: .87rem; }
+  .edu small { font-family: var(--font-mono); color: var(--text-faint); font-size: .72rem; }
+  .cert-list { list-style: none; }
+  .cert-list li {
+    color: var(--text-soft); font-size: .9rem; padding: 7px 0 7px 22px; position: relative;
+  }
+  .cert-list li::before {
+    content: "▹"; position: absolute; left: 0; color: var(--accent);
+  }
+
+  /* ============ Contact ============ */
+  .contact { text-align: center; padding: 90px 0 100px; }
+  .contact .prompt { justify-content: center; }
+  .contact h2 { font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 800; letter-spacing: -.02em; margin-bottom: 16px; }
+  .contact > .wrap > p { color: var(--text-soft); max-width: 520px; margin: 0 auto 34px; }
+  .contact-links { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+  .contact-links a {
+    font-family: var(--font-mono); font-size: .85rem; color: var(--text-soft);
+    border: 1px solid var(--border); border-radius: 10px; padding: 10px 18px;
+    transition: border-color .2s, color .2s, transform .2s;
+  }
+  .contact-links a:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; transform: translateY(-2px); }
+
+  footer {
+    border-top: 1px solid var(--border); padding: 28px 0;
+    text-align: center; font-family: var(--font-mono); font-size: .75rem; color: var(--text-faint);
+  }
+  footer a { color: var(--text-soft); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#top"><span class="tilde">~/</span>tecnologer<span class="cursor"></span></a>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="#experience"><span class="hash">#</span>experience</a>
+      <a href="#projects"><span class="hash">#</span>projects</a>
+      <a href="#education"><span class="hash">#</span>education</a>
+      <a href="#contact"><span class="hash">#</span>contact</a>
+      <button id="searchTrigger" class="mono" aria-label="Search my career by keyword" title="Search my career (Ctrl+K)">
+        <span class="dollar">$</span> grep career<span class="trigger-dots">…</span><kbd>ctrl k</kbd>
+      </button>
+      <button id="themeBtn" aria-label="Toggle color theme" title="Toggle theme">◐</button>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <!-- ============ Hero ============ -->
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <p class="prompt"><span class="dollar">$</span> <span class="cmd">whoami</span> <span class="out">→ rey david domínguez soto</span></p>
+      <h1>I build backends<br>that hold the line<span class="dim">.</span></h1>
+      <p class="hero-role">{{.Profile.RoleLine}}</p>
+      <p class="hero-bio">{{html .Profile.HeroBio}}</p>
+      <div class="cta-row">
+        {{- $primary := true}}
+        {{- range .Contacts}}{{if .CTA}}
+        <a class="btn {{if $primary}}btn-primary{{else}}btn-ghost{{end}}" href="{{.Href}}"{{if .External}} target="_blank" rel="noopener"{{end}}>{{.CTA}}</a>
+        {{- $primary = false}}{{end}}{{end}}
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><b>13<span>+</span></b><small>years shipping</small></div>
+        <div class="stat"><b>8<span>+</span></b><small>years of Go</small></div>
+        <div class="stat"><b>40<span>x</span></b><small>max speedup delivered</small></div>
+      </div>
+
+      <!-- Career search banner -->
+      <button id="searchBanner" class="reveal" aria-label="Search my career by keyword — opens search dialog">
+        <span class="term-bar" aria-hidden="true">
+          <span class="term-dots"><i></i><i></i><i></i></span>
+          <span class="term-title mono">search my career — what problem have I solved for you?</span>
+        </span>
+        <span class="term-line mono" aria-hidden="true">
+          <span class="dollar">$</span> <span class="cmd-long">cat {{.MDName}} | </span>grep -i <span class="quote">"</span><span class="type-kw" id="bannerKw">{{index .Search.Suggestions 0}}</span><span class="term-cursor"></span><span class="quote">"</span>
+        </span>
+        <span class="term-hint mono" aria-hidden="true">click to try · or press <kbd>ctrl k</kbd></span>
+      </button>
+    </div>
+  </section>
+
+  <!-- ============ Experience ============ -->
+  <section id="experience">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="num mono">01</span><h2>Experience</h2><span class="line"></span>
+      </div>
+      <div class="timeline">
+        {{- range .Experience}}
+        <article class="job{{if .Current}} current{{end}} reveal">
+          <div class="job-top"><h3>{{.Title}}</h3><span class="company">@ {{.Company}}</span></div>
+          <p class="job-meta">{{.StartDate}} — {{.EndDate}} · {{.Location}}</p>
+          {{- if .Roles}}
+          <div class="roles">{{range .Roles}}<span class="role-tag">{{.}}</span>{{end}}</div>
+          {{- end}}
+          {{- if .Technologies}}
+          {{- $n := len .Technologies}}
+          <div class="techs"{{if gt $n 6}} data-collapsible{{end}}>
+            {{- range $i, $t := .Technologies}}
+            <span class="tech{{if ge $i 6}} hidden-tech{{end}}">{{$t}}</span>
+            {{- end}}
+            {{- if gt $n 6}}
+            <button class="more-btn" aria-expanded="false">+{{sub $n 6}} more</button>
+            {{- end}}
+          </div>
+          {{- end}}
+        </article>
+        {{- end}}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Projects ============ -->
+  <section id="projects">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="num mono">02</span><h2>Side Projects</h2><span class="line"></span>
+      </div>
+      <div class="projects-grid">
+        <article class="project reveal">
+          <div class="project-head"><h3>JobTracker</h3><span class="status live">● live</span></div>
+          <p>Open-source, local-first job application tracker. A Go REST API with a Vue 3 SPA — your data stays yours.</p>
+          <div class="techs"><span class="tech">Go</span><span class="tech">Vue 3</span><span class="tech">SQLite</span><span class="tech">Wails</span><span class="tech">Docker</span></div>
+          <div class="project-links">
+            <a href="https://jobtracker.tecnologer.net" target="_blank" rel="noopener">visit ↗</a>
+            <a href="https://github.com/Tecnologer/jobtracker" target="_blank" rel="noopener">source ↗</a>
+          </div>
+        </article>
+        <article class="project reveal">
+          <div class="project-head"><h3>Cotiza3D</h3><span class="status wip">◐ in construction</span></div>
+          <p>3D-printing quote &amp; order manager. A single Go binary serving a REST API and an embedded Vue SPA, backed by PostgreSQL.</p>
+          <div class="techs"><span class="tech">Go</span><span class="tech">Vue 3</span><span class="tech">PostgreSQL</span><span class="tech">Docker</span></div>
+          <div class="project-links">
+            <a href="https://cotiza3d.com" target="_blank" rel="noopener">visit ↗</a>
+          </div>
+        </article>
+        <article class="project reveal">
+          <div class="project-head"><h3>Tempura</h3><span class="status live">● live</span></div>
+          <p>Atoms-to-bits IoT monitor for a vermicompost system — ESP8266 + sensors to a Go REST API on a solar-powered Raspberry Pi. Circuit, enclosures, and server all self-built.</p>
+          <div class="techs"><span class="tech">Go</span><span class="tech">ESP8266</span><span class="tech">PostgreSQL</span><span class="tech">Docker</span><span class="tech">3D printing</span></div>
+          <div class="project-links">
+            <a href="https://github.com/tecnologer/tempura" target="_blank" rel="noopener">source ↗</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Education & Certifications ============ -->
+  <section id="education">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="num mono">03</span><h2>Education &amp; Certifications</h2><span class="line"></span>
+      </div>
+      <div class="split">
+        <div class="card reveal">
+          <h3>// education</h3>
+          {{- range .Education}}
+          <div class="edu">
+            <b>{{.Institution}}</b>
+            <span>{{.Detail}}</span><br>
+            <small>{{.Years}}</small>
+          </div>
+          {{- end}}
+        </div>
+        <div class="card reveal">
+          <h3>// certifications</h3>
+          <ul class="cert-list">
+            {{- range .Certifications}}
+            <li>{{.}}</li>
+            {{- end}}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Contact ============ -->
+  <section id="contact" class="contact">
+    <div class="wrap">
+      <p class="prompt reveal"><span class="dollar">$</span> <span class="cmd">git commit -m</span> <span class="out">"let's build something"</span></p>
+      <h2 class="reveal">Get in touch</h2>
+      <p class="reveal">Whether it's a role, a collaboration, or a project you want built right — my inbox is open.</p>
+      <div class="contact-links reveal">
+        {{- range .Contacts}}
+        <a href="{{.Href}}"{{if .External}} target="_blank" rel="noopener"{{end}}>{{.Label}}</a>
+        {{- end}}
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="tilde">~/</span>tecnologer {{.Version}} · generated by profilegen · <a href="/{{.MDName}}">resume.md</a> · <a href="https://github.com/tecnologer/portfolio" target="_blank" rel="noopener">source</a>
+  </div>
+</footer>
+
+<!-- ============ Career search palette ============ -->
+<div class="palette-backdrop" id="paletteBackdrop">
+  <div class="palette" role="dialog" aria-modal="true" aria-label="Search my career by keyword">
+    <div class="palette-input">
+      <span class="dollar">$</span>
+      <span class="cmd-static"><span class="cmd-long">cat {{.MDName}} | </span>grep -i</span>
+      <span class="quote">"</span><input id="paletteInput" type="text" autocomplete="off" spellcheck="false" aria-label="Search keyword"><span class="quote">"</span>
+      <kbd>esc</kbd>
+    </div>
+    <div class="palette-results" id="paletteResults"></div>
+    <div class="palette-foot"><span>↑↓ navigate</span><span>↵ open</span><span>esc close</span></div>
+  </div>
+</div>
+
+<script>
+  // Theme toggle — respects saved-in-memory choice per visit, defaults to dark.
+  const root = document.documentElement;
+  const btn = document.getElementById('themeBtn');
+  btn.addEventListener('click', () => {
+    root.setAttribute('data-theme', root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+  });
+
+  // Expand/collapse long tech lists
+  document.querySelectorAll('[data-collapsible] .more-btn').forEach(b => {
+    b.addEventListener('click', () => {
+      const open = b.getAttribute('aria-expanded') === 'true';
+      b.closest('[data-collapsible]').querySelectorAll('.hidden-tech')
+        .forEach(t => t.style.display = open ? 'none' : 'inline-block');
+      b.setAttribute('aria-expanded', String(!open));
+      b.textContent = open ? b.dataset.label : 'show less';
+    });
+    b.dataset.label = b.textContent;
+  });
+
+  // Reveal on scroll
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  /* ============ Career search ============ */
+  // STORIES + SUGGESTIONS are injected at build time from data/resume.yaml.
+  const STORIES = {{.Search.Stories}};
+  const SUGGESTIONS = {{.Search.Suggestions}};
+
+  const backdrop = document.getElementById('paletteBackdrop');
+  const input = document.getElementById('paletteInput');
+  const resultsEl = document.getElementById('paletteResults');
+  let selIdx = 0, current = [];
+
+  const esc = s => s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const hi = (text, q) => {
+    if (!q) return esc(text);
+    const i = text.toLowerCase().indexOf(q.toLowerCase());
+    if (i < 0) return esc(text);
+    return esc(text.slice(0, i)) + '<mark>' + esc(text.slice(i, i + q.length)) + '</mark>' + esc(text.slice(i + q.length));
+  };
+
+  function search(q) {
+    q = q.trim().toLowerCase();
+    if (!q) return [];
+    return STORIES.map(s => {
+      let score = 0;
+      if (s.tags.some(t => t.includes(q))) score += 3;
+      if (s.title.toLowerCase().includes(q)) score += 2;
+      if (s.story.toLowerCase().includes(q)) score += 1;
+      if (s.source.includes(q)) score += 1;
+      return { s, score };
+    }).filter(r => r.score > 0).sort((a, b) => b.score - a.score).map(r => r.s);
+  }
+
+  function render() {
+    const q = input.value.trim();
+    current = search(q);
+    input.style.width = Math.min(Math.max(q.length, 2), 40) + 'ch';
+    if (!q) {
+      resultsEl.innerHTML =
+        '<p class="palette-empty">Type a keyword to search my experience — or try one of these:</p>' +
+        '<div class="palette-chips">' + SUGGESTIONS.map(k => `<button data-kw="${k}">${k}</button>`).join('') + '</div>';
+      resultsEl.querySelectorAll('[data-kw]').forEach(b =>
+        b.addEventListener('click', () => { input.value = b.dataset.kw; input.focus(); render(); }));
+      return;
+    }
+    if (!current.length) {
+      resultsEl.innerHTML = `<p class="palette-empty">grep: <b>"${esc(q)}"</b>: no matches found — try <b>performance</b>, <b>security</b>, <b>aws</b>…</p>`;
+      return;
+    }
+    selIdx = Math.min(selIdx, current.length - 1);
+    resultsEl.innerHTML = `<p class="palette-group">// ${current.length} match${current.length > 1 ? 'es' : ''}</p>` +
+      current.map((s, i) => `
+        <div class="palette-item${i === selIdx ? ' selected' : ''}" data-i="${i}">
+          <div><b>${hi(s.title, q)}</b><p>${hi(s.story, q)}</p></div>
+          <span class="palette-src">${s.source}</span>
+        </div>`).join('');
+    resultsEl.querySelectorAll('.palette-item').forEach(el => {
+      el.addEventListener('click', () => { selIdx = +el.dataset.i; openResult(); });
+      el.addEventListener('mousemove', () => {
+        if (selIdx !== +el.dataset.i) { selIdx = +el.dataset.i; paintSel(); }
+      });
+    });
+  }
+  function paintSel() {
+    resultsEl.querySelectorAll('.palette-item').forEach(el =>
+      el.classList.toggle('selected', +el.dataset.i === selIdx));
+  }
+  function openResult() {
+    const s = current[selIdx];
+    if (!s) return;
+    closePalette();
+    if (s.href.startsWith('#')) document.querySelector(s.href)?.scrollIntoView({ behavior: 'smooth' });
+    else window.open(s.href, '_blank', 'noopener');
+  }
+  let lastFocus = null;
+  function openPalette() {
+    lastFocus = document.activeElement;
+    backdrop.classList.add('open');
+    input.value = ''; selIdx = 0; render(); input.focus();
+  }
+  function closePalette() {
+    backdrop.classList.remove('open');
+    lastFocus?.focus?.({ preventScroll: true }); // else focus scrolls back, fighting scrollIntoView
+  }
+  document.getElementById('searchTrigger').addEventListener('click', openPalette);
+  document.getElementById('searchBanner').addEventListener('click', openPalette);
+
+  // Banner keyword typewriter — cycles through suggestions
+  const bannerKw = document.getElementById('bannerKw');
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    let wi = 0, ci = SUGGESTIONS[0].length, deleting = false;
+    setInterval(() => {
+      const word = SUGGESTIONS[wi];
+      if (deleting) {
+        ci--;
+        if (ci === 0) { deleting = false; wi = (wi + 1) % SUGGESTIONS.length; }
+      } else {
+        ci++;
+        if (ci >= word.length + 14) { deleting = true; ci = word.length; } // pause ~14 ticks at full word
+      }
+      bannerKw.textContent = SUGGESTIONS[wi].slice(0, Math.min(ci, SUGGESTIONS[wi].length));
+    }, 130);
+  }
+  backdrop.addEventListener('mousedown', e => { if (e.target === backdrop) closePalette(); });
+  document.addEventListener('keydown', e => {
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); backdrop.classList.contains('open') ? closePalette() : openPalette(); return; }
+    if (!backdrop.classList.contains('open')) return;
+    if (e.key === 'Escape') closePalette();
+    else if (e.key === 'ArrowDown') { e.preventDefault(); selIdx = Math.min(selIdx + 1, current.length - 1); paintSel(); }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); selIdx = Math.max(selIdx - 1, 0); paintSel(); }
+    // preventDefault: without it the rest of this key press lands on the refocused
+    // trigger button and re-opens the palette blank.
+    else if (e.key === 'Enter') { e.preventDefault(); openResult(); }
+  });
+  input.addEventListener('input', () => { selIdx = 0; render(); });
+</script>
+</body>
+</html>
